@@ -11,12 +11,21 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+## Our Goal
+
+
+The goal of this project is to develop a Code Block in Flutter as a standalone package that AppFlowy and other Flutter applications can use. Code Block is a feature that allows you to write and display code snippets.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+
+- [x] Syntax Highlighting
+- [x] Multiple Programming Language Support
+- [ ] Copy All Code
+- [ ] Copy the entire Code Block 
+- [ ] Line numbering
+- [ ] Auto-Indentation
+- [ ] Export/import functionality
 
 ## Getting started
 
@@ -34,6 +43,5 @@ const like = 'sample';
 
 ## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+Find out more about this here:
+ https://appflowy.gitbook.io/docs/essential-documentation/contribute-to-appflowy/appflowy-mentorship-program/mentorship-2022/mentee-projects/code-block
