@@ -1,0 +1,6 @@
+{
+  "appName": "CodeBlock Example",
+  "@appName": {
+    "description": "The title of the app"
+  }
+}
