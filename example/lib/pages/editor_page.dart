@@ -11,13 +11,29 @@ class EditorPage extends StatefulWidget {
 
 class EditorPageState extends State<EditorPage> {
   final editorState = EditorState.blank(withInitialText: true);
-  late final List<SelectionMenuItem> slashMenuItems;
+  late final List<SelectionMenuItem> slashMenuItems = [
+    ...standardSelectionMenuItems,
+    codeBlockItem,
+  ];
   late final Map<String, BlockComponentBuilder> blockComponentBuilders;
+  List<CharacterShortcutEvent> get characterShortcutEvents => [
+        // code block
+        //...codeBlockCharacterEvents,
+
+        // customize the slash menu command
+        customSlashCommand(
+          slashMenuItems,
+        ),
+
+        ...standardCharacterShortcutEvents
+          ..removeWhere(
+            (element) => element == slashCommand,
+          ), // remove the default slash command.
+      ];
 
   @override
   void initState() {
     super.initState();
-    slashMenuItems = _customSlashMenuItems();
     blockComponentBuilders = _customBlockComponentBuilders(editorState);
   }
 
@@ -26,7 +42,7 @@ class EditorPageState extends State<EditorPage> {
     return AppFlowyEditor(
       editorState: editorState,
       autoFocus: true,
-      characterShortcutEvents: [...standardCharacterShortcutEvents],
+      characterShortcutEvents: characterShortcutEvents,
       commandShortcutEvents: [...standardCommandShortcutEvents],
       blockComponentBuilders: blockComponentBuilders,
       footer: const SizedBox(height: 200),
@@ -58,13 +74,4 @@ Map<String, BlockComponentBuilder> _customBlockComponentBuilders(
   };
 
   return builders;
-}
-
-List<SelectionMenuItem> _customSlashMenuItems() {
-  final items = [...standardSelectionMenuItems];
-
-  return [
-    ...items,
-    codeBlockItem,
-  ];
 }
