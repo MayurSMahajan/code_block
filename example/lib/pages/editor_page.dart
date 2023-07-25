@@ -11,14 +11,13 @@ class EditorPage extends StatefulWidget {
 
 class EditorPageState extends State<EditorPage> {
   final editorState = EditorState.blank(withInitialText: true);
-  late final List<SelectionMenuItem> slashMenuItems = [
-    codeBlockItem,
-  ];
+  late final List<SelectionMenuItem> slashMenuItems;
   late final Map<String, BlockComponentBuilder> blockComponentBuilders;
 
   @override
   void initState() {
     super.initState();
+    slashMenuItems = _customSlashMenuItems();
     blockComponentBuilders = _customBlockComponentBuilders(editorState);
   }
 
@@ -59,4 +58,13 @@ Map<String, BlockComponentBuilder> _customBlockComponentBuilders(
   };
 
   return builders;
+}
+
+List<SelectionMenuItem> _customSlashMenuItems() {
+  final items = [...standardSelectionMenuItems];
+
+  return [
+    ...items,
+    codeBlockItem,
+  ];
 }
