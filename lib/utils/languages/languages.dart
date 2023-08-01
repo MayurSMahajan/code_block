@@ -6,7 +6,7 @@ final supportedLanguages = [
   'BASIC',
   'C',
   'C#',
-  'C++',
+  'CPP',
   'Clojure',
   'CSS',
   'Dart',
@@ -51,4 +51,7 @@ final languages = supportedLanguages
     .map((e) => e.toLowerCase())
     .toSet()
     .intersection(allLanguages.keys.toSet())
-    .toList();
+    .toList()
+  ..add('auto')
+  ..add('c')
+  ..sort();
