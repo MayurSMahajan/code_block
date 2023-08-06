@@ -131,7 +131,7 @@ class _CodeBlockComponentWidgetState extends State<CodeBlockComponentWidget>
         alignment: Alignment.centerLeft,
         padding: const EdgeInsets.symmetric(horizontal: 4),
         child: FlowyTextButton(
-          '${language ?? 'Auto'} ',
+          '${language ?? 'auto'} ',
           padding: const EdgeInsets.symmetric(
             horizontal: 12.0,
             vertical: 4.0,
@@ -146,7 +146,7 @@ class _CodeBlockComponentWidgetState extends State<CodeBlockComponentWidget>
       popupBuilder: (BuildContext context) {
         return SelectableItemListMenu(
           items: languages.map((e) => e).toList(),
-          selectedIndex: languages.indexOf(language ?? ''),
+          selectedIndex: languages.indexOf(language ?? 'auto'),
           onSelected: (index) {
             updateLanguage(languages[index]);
             popoverController.close();
