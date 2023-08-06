@@ -18,7 +18,7 @@ class EditorPageState extends State<EditorPage> {
   late final Map<String, BlockComponentBuilder> blockComponentBuilders;
   List<CharacterShortcutEvent> get characterShortcutEvents => [
         // code block
-        //...codeBlockCharacterEvents,
+        ...codeBlockCharacterEvents,
 
         // customize the slash menu command
         customSlashCommand(
@@ -30,6 +30,11 @@ class EditorPageState extends State<EditorPage> {
             (element) => element == slashCommand,
           ), // remove the default slash command.
       ];
+
+  final List<CommandShortcutEvent> commandShortcutEvents = [
+    ...codeBlockCommandEvents,
+    ...standardCommandShortcutEvents,
+  ];
 
   @override
   void initState() {
@@ -43,7 +48,7 @@ class EditorPageState extends State<EditorPage> {
       editorState: editorState,
       autoFocus: true,
       characterShortcutEvents: characterShortcutEvents,
-      commandShortcutEvents: [...standardCommandShortcutEvents],
+      commandShortcutEvents: commandShortcutEvents,
       blockComponentBuilders: blockComponentBuilders,
       footer: const SizedBox(height: 200),
     );

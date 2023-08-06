@@ -1,5 +1,5 @@
 name: code_block
-description: A new Flutter package project.
+description: CodeBlock Component that provides a rich code block using AppFlowy Editor.
 version: 0.0.1
 publish_to: none
 homepage:
@@ -9,7 +9,7 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
-  appflowy_editor: ^1.2.0
+  appflowy_editor: ^1.2.2
   flutter:
     sdk: flutter
   highlight: ^0.7.0
