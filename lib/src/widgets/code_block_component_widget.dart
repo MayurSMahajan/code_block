@@ -1,9 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_popover/appflowy_popover.dart';
-import 'package:code_block/src/widgets/selectable_item_list_menu.dart';
+import 'package:code_block/src/widgets/widgets.dart';
 import 'package:code_block/utils/utils.dart';
-import 'package:flowy_infra_ui/flowy_infra_ui.dart';
-import 'package:flutter/material.dart';
 import 'package:highlight/highlight.dart' as highlight;
 
 class CodeBlockComponentWidget extends BlockComponentStatefulWidget {
@@ -64,7 +63,7 @@ class _CodeBlockComponentWidgetState extends State<CodeBlockComponentWidget>
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          _buildSwitchLanguageButton(context),
+          SwitchLanguageButton(node: node, editorState: editorState),
           _buildCodeBlock(context),
         ],
       ),
@@ -120,52 +119,6 @@ class _CodeBlockComponentWidgetState extends State<CodeBlockComponentWidget>
         ),
       ),
     );
-  }
-
-  Widget _buildSwitchLanguageButton(BuildContext context) {
-    const maxWidth = 100.0;
-    return AppFlowyPopover(
-      controller: popoverController,
-      child: Container(
-        width: maxWidth,
-        alignment: Alignment.centerLeft,
-        padding: const EdgeInsets.symmetric(horizontal: 4),
-        child: FlowyTextButton(
-          '${language ?? 'auto'} ',
-          padding: const EdgeInsets.symmetric(
-            horizontal: 12.0,
-            vertical: 4.0,
-          ),
-          constraints: const BoxConstraints(maxWidth: maxWidth),
-          fontColor: Theme.of(context).colorScheme.onBackground,
-          fillColor: Colors.transparent,
-          mainAxisAlignment: MainAxisAlignment.start,
-          onPressed: () {},
-        ),
-      ),
-      popupBuilder: (BuildContext context) {
-        return SelectableItemListMenu(
-          items: languages.map((e) => e).toList(),
-          selectedIndex: languages.indexOf(language ?? 'auto'),
-          onSelected: (index) {
-            updateLanguage(languages[index]);
-            popoverController.close();
-          },
-        );
-      },
-    );
-  }
-
-  Future<void> updateLanguage(String language) async {
-    final transaction = editorState.transaction
-      ..updateNode(node, {
-        CodeBlockKeys.language: language == 'auto' ? null : language,
-      })
-      ..afterSelection = Selection.collapse(
-        node.path,
-        node.delta?.length ?? 0,
-      );
-    await editorState.apply(transaction);
   }
 
   // Copy from flutter.highlight package.
