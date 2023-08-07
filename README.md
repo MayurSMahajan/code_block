@@ -22,6 +22,7 @@ The goal of this project is to develop a Code Block in Flutter as a standalone p
 - [x] Syntax Highlighting
 - [x] Multiple Programming Language Support
 - [ ] Copy All Code
+- [x] Paste Multiple lines of code
 - [ ] Copy the entire Code Block 
 - [ ] Line numbering
 - [ ] Auto-Indentation
