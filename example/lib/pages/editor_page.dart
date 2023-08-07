@@ -6,11 +6,13 @@ class EditorPage extends StatefulWidget {
   const EditorPage({super.key});
 
   @override
-  State<EditorPage> createState() => EditorPageState();
+  State<EditorPage> createState() => _EditorPageState();
 }
 
-class EditorPageState extends State<EditorPage> {
-  final editorState = EditorState.blank(withInitialText: true);
+class _EditorPageState extends State<EditorPage> {
+  final editorState = EditorState(
+    document: Document(root: pageNode(children: [codeBlockNode()])),
+  );
   late final List<SelectionMenuItem> slashMenuItems = [
     ...standardSelectionMenuItems,
     codeBlockItem,
