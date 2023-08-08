@@ -10,8 +10,8 @@ final List<CharacterShortcutEvent> codeBlockCharacterEvents = [
 
 final List<CommandShortcutEvent> codeBlockCommandEvents = [
   insertNewParagraphNextToCodeBlockCommand,
+  pasteInCodeblock,
+  selectAllInCodeBlockCommand,
   tabToInsertSpacesInCodeBlockCommand,
   tabToDeleteSpacesInCodeBlockCommand,
-  selectAllInCodeBlockCommand,
-  pasteInCodeblock,
 ];

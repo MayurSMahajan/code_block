@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:code_block/code_block.dart';
 // ignore: implementation_imports
 import 'package:appflowy_editor/src/infra/clipboard.dart' as clipboard;
+import 'package:code_block/utils/code_block_node/code_block_node.dart';
 
 /// ctrl + v to paste text in code block.
 ///

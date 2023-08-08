@@ -57,7 +57,10 @@ void main() {
         expect(editor.documentRootLen, 1);
 
         final node = editor.editorState.getNodeAtPath([0]);
+        expect(node, isNotNull);
         expect(node!.type, CodeBlockKeys.type);
+        expect(node.delta, isNotNull);
+        expect(node.delta!.toPlainText(), isEmpty);
 
         await editor.dispose();
       });
