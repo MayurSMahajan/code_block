@@ -1,6 +1,21 @@
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:code_block/utils/utils.dart';
 import 'package:flutter/material.dart';
+
+class CodeBlockKeys {
+  const CodeBlockKeys._();
+
+  static const String type = 'code';
+
+  /// The content of a code block.
+  ///
+  /// The value is a String.
+  static const String delta = 'delta';
+
+  /// The language of a code block.
+  ///
+  /// The value is a String.
+  static const String language = 'language';
+}
 
 Node codeBlockNode({
   Delta? delta,
