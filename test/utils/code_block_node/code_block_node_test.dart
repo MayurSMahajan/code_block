@@ -2,6 +2,8 @@ import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:code_block/code_block.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import '../../helpers/infra/testable_editor.dart';
+
 void main() {
   group('codeBlockNode', () {
     group('constructur', () {
@@ -43,6 +45,21 @@ void main() {
           testNode.attributes,
           expectedAttributes,
         );
+      });
+    });
+
+    group('works with editor', () {
+      testWidgets('gets inserted properly', (tester) async {
+        final editor = tester.editor..addNode(codeBlockNode());
+
+        await editor.startTesting();
+
+        expect(editor.documentRootLen, 1);
+
+        final node = editor.editorState.getNodeAtPath([0]);
+        expect(node!.type, CodeBlockKeys.type);
+
+        await editor.dispose();
       });
     });
   });
