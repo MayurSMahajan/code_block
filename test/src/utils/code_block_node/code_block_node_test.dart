@@ -2,7 +2,7 @@ import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:code_block/code_block.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../helpers/infra/testable_editor.dart';
+import '../../../helpers/infra/testable_editor.dart';
 
 void main() {
   group('codeBlockNode', () {
