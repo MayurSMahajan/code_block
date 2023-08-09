@@ -63,7 +63,7 @@ class _CodeBlockComponentWidgetState extends State<CodeBlockComponentWidget>
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          SwitchLanguageButton(node: node, editorState: editorState),
+          ActionMenuWidget(editorState: editorState, node: node),
           _buildCodeBlock(context),
         ],
       ),
