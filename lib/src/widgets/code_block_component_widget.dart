@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_popover/appflowy_popover.dart';
 import 'package:code_block/src/widgets/widgets.dart';
-import 'package:code_block/utils/utils.dart';
+import 'package:code_block/src/utils/utils.dart';
 import 'package:highlight/highlight.dart' as highlight;
 
 class CodeBlockComponentWidget extends BlockComponentStatefulWidget {
