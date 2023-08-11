@@ -1,24 +1,22 @@
-import 'package:appflowy_editor/appflowy_editor.dart';
+import 'package:code_block/src/service/actions_service.dart';
 import 'package:code_block/src/widgets/switch_language_button.dart';
 import 'package:flutter/material.dart';
 
 class ActionMenuWidget extends StatelessWidget {
   const ActionMenuWidget({
     super.key,
-    required this.editorState,
-    required this.node,
+    required this.actionsService,
   });
 
-  final EditorState editorState;
-  final Node node;
+  final ActionsService actionsService;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        SwitchLanguageButton(node: node, editorState: editorState),
-        ActionsContainer(node: node, editorState: editorState),
+        SwitchLanguageButton(actionsService: actionsService),
+        ActionsContainer(actionsService: actionsService),
       ],
     );
   }
@@ -27,21 +25,23 @@ class ActionMenuWidget extends StatelessWidget {
 class ActionsContainer extends StatelessWidget {
   const ActionsContainer({
     super.key,
-    required this.editorState,
-    required this.node,
+    required this.actionsService,
   });
 
-  final EditorState editorState;
-  final Node node;
+  final ActionsService actionsService;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        IconButton(onPressed: () {}, icon: const Icon(Icons.copy_all)),
+        IconButton(onPressed: copyAllCode, icon: const Icon(Icons.copy_all)),
         IconButton(onPressed: () {}, icon: const Icon(Icons.download)),
         IconButton(onPressed: () {}, icon: const Icon(Icons.upload)),
       ],
     );
+  }
+
+  Future<void> copyAllCode() async {
+    await actionsService.copyAllCode();
   }
 }

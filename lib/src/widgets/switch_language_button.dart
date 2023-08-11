@@ -1,5 +1,5 @@
+import 'package:code_block/src/service/actions_service.dart';
 import 'package:flutter/material.dart';
-import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_popover/appflowy_popover.dart';
 import 'package:code_block/src/widgets/selectable_item_list_menu.dart';
 import 'package:code_block/src/utils/utils.dart';
@@ -8,12 +8,10 @@ import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 class SwitchLanguageButton extends StatefulWidget {
   const SwitchLanguageButton({
     super.key,
-    required this.node,
-    required this.editorState,
+    required this.actionsService,
   });
 
-  final Node node;
-  final EditorState editorState;
+  final ActionsService actionsService;
 
   @override
   State<SwitchLanguageButton> createState() => _SwitchLanguageButtonState();
@@ -21,8 +19,7 @@ class SwitchLanguageButton extends StatefulWidget {
 
 class _SwitchLanguageButtonState extends State<SwitchLanguageButton> {
   late PopoverController popoverController;
-  String? get language =>
-      widget.node.attributes[CodeBlockKeys.language] as String?;
+  String? get language => widget.actionsService.language;
 
   @override
   void initState() {
@@ -63,24 +60,11 @@ class _SwitchLanguageButtonState extends State<SwitchLanguageButton> {
           items: languages.map((e) => e).toList(),
           selectedIndex: languages.indexOf(language ?? 'auto'),
           onSelected: (index) {
-            updateLanguage(languages[index]);
+            widget.actionsService.updateLanguage(languages[index]);
             popoverController.close();
           },
         );
       },
     );
-  }
-
-  @visibleForTesting
-  Future<void> updateLanguage(String language) async {
-    final transaction = widget.editorState.transaction
-      ..updateNode(widget.node, {
-        CodeBlockKeys.language: language == 'auto' ? null : language,
-      })
-      ..afterSelection = Selection.collapse(
-        widget.node.path,
-        widget.node.delta?.length ?? 0,
-      );
-    await widget.editorState.apply(transaction);
   }
 }

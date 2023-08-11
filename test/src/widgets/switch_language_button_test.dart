@@ -1,3 +1,4 @@
+import 'package:code_block/src/service/actions_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
@@ -10,6 +11,7 @@ import '../../helpers/pump_app.dart';
 void main() {
   final node = codeBlockNode(language: 'dart');
   final editorState = EditorState.blank();
+  final actionsService = ActionsService(editorState: editorState, node: node);
 
   group('SwitchLanguageButton', () {
     Widget buildSubject() {
@@ -17,8 +19,7 @@ void main() {
         width: 200,
         height: 200,
         child: SwitchLanguageButton(
-          node: node,
-          editorState: editorState,
+          actionsService: actionsService,
         ),
       );
     }

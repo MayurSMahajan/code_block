@@ -1,3 +1,4 @@
+import 'package:code_block/src/service/actions_service.dart';
 import 'package:flutter/material.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_popover/appflowy_popover.dart';
@@ -46,10 +47,17 @@ class _CodeBlockComponentWidgetState extends State<CodeBlockComponentWidget>
 
   final popoverController = PopoverController();
 
+  late final ActionsService actionsService;
   late final editorState = widget.editorState;
 
   String? get language => node.attributes[CodeBlockKeys.language] as String?;
   String? autoDetectLanguage;
+
+  @override
+  void initState() {
+    super.initState();
+    actionsService = ActionsService(editorState: editorState, node: node);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +71,7 @@ class _CodeBlockComponentWidgetState extends State<CodeBlockComponentWidget>
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          ActionMenuWidget(editorState: editorState, node: node),
+          ActionMenuWidget(actionsService: actionsService),
           _buildCodeBlock(context),
         ],
       ),
