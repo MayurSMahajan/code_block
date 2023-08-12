@@ -1,7 +1,7 @@
 import 'package:file_picker/file_picker.dart' as fp;
 import 'file_picker_service.dart';
 
-class FilePicker implements FilePickerService {
+class ProgramFilePicker implements FilePickerService {
   @override
   Future<String?> getDirectoryPath({String? title}) {
     return fp.FilePicker.platform.getDirectoryPath();
