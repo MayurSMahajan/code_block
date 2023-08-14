@@ -171,6 +171,20 @@ class TestableEditor {
     );
   }
 
+  void initializeWithCodeblock({Delta? delta, String? language}) {
+    _editorState = EditorState(
+        document: Document(
+      root: pageNode(
+        children: [
+          codeBlockNode(
+            delta: delta,
+            language: language,
+          ),
+        ],
+      ),
+    ));
+  }
+
   Future<void> dispose() async {
     _ime = null;
     // Workaround: to wait all the debounce calls expire.
