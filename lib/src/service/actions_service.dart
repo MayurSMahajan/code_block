@@ -25,17 +25,17 @@ class ActionsService {
     await editorState.apply(transaction);
   }
 
-  // Future<void> uploadCode() async {
-  //   final transaction = editorState.transaction
-  //     ..updateNode(node, {
-  //       CodeBlockKeys.delta: language == 'auto' ? null : language,
-  //     })
-  //     ..afterSelection = Selection.collapse(
-  //       node.path,
-  //       node.delta?.length ?? 0,
-  //     );
-  //   await editorState.apply(transaction);
-  // }
+  Future<void> uploadCode(String data) async {
+    print("data:$data");
+    final delta = Delta()..insert(data);
+    print("NewDelta: $delta");
+
+    final transaction = editorState.transaction
+      ..updateNode(node, {
+        CodeBlockKeys.delta: delta,
+      });
+    await editorState.apply(transaction);
+  }
 
   Future<void> copyAllCode() async {
     final text = node.delta?.toPlainText();

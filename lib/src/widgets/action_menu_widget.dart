@@ -25,7 +25,7 @@ class ActionMenuWidget extends StatelessWidget {
   }
 }
 
-class ActionsContainer extends StatelessWidget {
+class ActionsContainer extends StatefulWidget {
   const ActionsContainer({
     super.key,
     required this.actionsService,
@@ -34,25 +34,43 @@ class ActionsContainer extends StatelessWidget {
   final ActionsService actionsService;
 
   @override
+  State<ActionsContainer> createState() => _ActionsContainerState();
+}
+
+class _ActionsContainerState extends State<ActionsContainer> {
+  final programFilePicker = ProgramFilePicker();
+  late UploadDownloadService uploadDownloadService;
+
+  @override
+  void initState() {
+    super.initState();
+    uploadDownloadService = UploadDownloadService(
+      programFilePicker: programFilePicker,
+      actionsService: widget.actionsService,
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         IconButton(onPressed: copyAllCode, icon: const Icon(Icons.copy_all)),
         IconButton(onPressed: downloadCode, icon: const Icon(Icons.download)),
+        IconButton(onPressed: uploadCode, icon: const Icon(Icons.upload)),
       ],
     );
   }
 
   Future<void> copyAllCode() async {
-    await actionsService.copyAllCode();
+    await widget.actionsService.copyAllCode();
   }
 
   Future<void> downloadCode() async {
-    final programFilePicker = ProgramFilePicker();
-    final uploadDownloadService = UploadDownloadService(
-      programFilePicker: programFilePicker,
-    );
-    await uploadDownloadService.downloadProgram(actionsService);
+    await uploadDownloadService.downloadProgram();
     //optionally could return a flag, indicating that the operation was completed
+  }
+
+  Future<void> uploadCode() async {
+    await uploadDownloadService.uploadProgram();
   }
 }
