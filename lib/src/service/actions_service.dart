@@ -1,6 +1,5 @@
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:code_block/src/utils/code_block_node/code_block_node.dart';
-import 'package:flutter/services.dart';
 
 class ActionsService {
   final EditorState editorState;
@@ -41,7 +40,7 @@ class ActionsService {
   Future<void> copyAllCode() async {
     final text = node.delta?.toPlainText();
     if (text != null && text.isNotEmpty) {
-      await Clipboard.setData(ClipboardData(text: text));
+      await AppFlowyClipboard.setData(text: text);
     }
   }
 }

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-// ignore: implementation_imports
-import 'package:appflowy_editor/src/infra/clipboard.dart' as clipboard;
 import 'package:code_block/src/utils/code_block_node/code_block_node.dart';
 
 /// ctrl + v to paste text in code block.
@@ -39,7 +37,7 @@ CommandShortcutEventHandler _pasteInCodeBlock = (editorState) {
     return KeyEventResult.ignored;
   }
   () async {
-    final data = await clipboard.AppFlowyClipboard.getData();
+    final data = await AppFlowyClipboard.getData();
     final text = data.text;
     if (text != null && text.isNotEmpty) {
       final transaction = editorState.transaction
