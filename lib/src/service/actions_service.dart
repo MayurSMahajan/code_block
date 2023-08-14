@@ -25,10 +25,11 @@ class ActionsService {
     await editorState.apply(transaction);
   }
 
+  //TODO: Does not work
   Future<void> uploadCode(String data) async {
-    print("data:$data");
+    // print("data:$data");
     final delta = Delta()..insert(data);
-    print("NewDelta: $delta");
+    // print("NewDelta: $delta");
 
     final transaction = editorState.transaction
       ..updateNode(node, {
