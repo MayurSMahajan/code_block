@@ -8,9 +8,10 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(AppLocalizations.of(context)!.appName),
-        ),
-        body: const EditorPage());
+      appBar: AppBar(
+        title: Text(AppLocalizations.of(context)!.appName),
+      ),
+      body: const EditorPage(),
+    );
   }
 }

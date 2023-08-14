@@ -119,7 +119,10 @@ class _CodeBlockComponentWidgetState extends State<CodeBlockComponentWidget>
         placeholderText: placeholderText,
         lineHeight: 1.5,
         textSpanDecorator: (textSpan) => TextSpan(
-          style: textStyle,
+          style: textStyle.copyWith(
+            height: 1.5,
+            color: Colors.black,
+          ),
           children: codeTextSpans,
         ),
         placeholderTextSpanDecorator: (textSpan) => TextSpan(
