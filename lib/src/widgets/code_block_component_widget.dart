@@ -1,4 +1,5 @@
 import 'package:code_block/src/service/actions_service.dart';
+import 'package:code_block/src/utils/themes/code_block_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_popover/appflowy_popover.dart';
@@ -15,10 +16,12 @@ class CodeBlockComponentWidget extends BlockComponentStatefulWidget {
     super.configuration = const BlockComponentConfiguration(),
     this.padding = const EdgeInsets.all(0),
     required this.editorState,
+    this.theme = builtInCodeBlockTheme,
   });
 
   final EdgeInsets padding;
   final EditorState editorState;
+  final CodeBlockTheme theme;
 
   @override
   State<CodeBlockComponentWidget> createState() =>
@@ -146,7 +149,7 @@ class _CodeBlockComponentWidgetState extends State<CodeBlockComponentWidget>
               ? TextSpan(text: node.value)
               : TextSpan(
                   text: node.value,
-                  style: builtInCodeBlockTheme[node.className!],
+                  style: widget.theme[node.className!],
                 ),
         );
       } else if (node.children != null) {
@@ -154,7 +157,7 @@ class _CodeBlockComponentWidgetState extends State<CodeBlockComponentWidget>
         currentSpans.add(
           TextSpan(
             children: tmp,
-            style: builtInCodeBlockTheme[node.className!],
+            style: widget.theme[node.className!],
           ),
         );
         stack.add(currentSpans);
