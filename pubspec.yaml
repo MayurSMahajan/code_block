@@ -9,7 +9,7 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
-  appflowy_editor: ^1.2.3
+  appflowy_editor: ^1.2.4
   flutter:
     sdk: flutter
   highlight: ^0.7.0
