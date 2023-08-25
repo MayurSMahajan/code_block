@@ -1,6 +1,8 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 
-/// The the theme applied to the code block
+/// The theme applied to the code block
 class CodeBlockTheme {
   final TextStyle root;
   final TextStyle comment;
@@ -8,16 +10,13 @@ class CodeBlockTheme {
   final TextStyle tag;
   final TextStyle attribute;
   final TextStyle keyword;
-  // ignore: non_constant_identifier_names
   final TextStyle selector_tag;
   final TextStyle literal;
   final TextStyle name;
   final TextStyle variable;
-  // ignore: non_constant_identifier_names
   final TextStyle template_variable;
   final TextStyle code;
   final TextStyle string;
-  // ignore: non_constant_identifier_names
   final TextStyle meta_string;
   final TextStyle regexp;
   final TextStyle link;
@@ -28,9 +27,7 @@ class CodeBlockTheme {
   final TextStyle section;
   final TextStyle meta;
   final TextStyle type;
-  // ignore: non_constant_identifier_names
   final TextStyle built_in;
-  // ignore: non_constant_identifier_names
   final TextStyle builtin_name;
   final TextStyle params;
   final TextStyle attr;
@@ -38,9 +35,7 @@ class CodeBlockTheme {
   final TextStyle formula;
   final TextStyle addition;
   final TextStyle deletion;
-  // ignore: non_constant_identifier_names
   final TextStyle selector_id;
-  // ignore: non_constant_identifier_names
   final TextStyle selector_class;
   final TextStyle doctag;
   final TextStyle strong;

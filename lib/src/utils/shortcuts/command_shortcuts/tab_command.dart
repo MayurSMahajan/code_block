@@ -37,10 +37,10 @@ CommandShortcutEventHandler _tabToInsertSpacesInCodeBlockCommandHandler =
           index,
           spaces, // two spaces
         )
-        ..afterSelection = Selection.collapse(
-          selection.end.path,
-          selection.endIndex + spaces.length,
-        );
+        ..afterSelection = Selection.collapsed(Position(
+          path: selection.end.path,
+          offset: selection.endIndex + spaces.length,
+        ));
       editorState.apply(transaction);
       break;
     }
@@ -85,9 +85,11 @@ CommandShortcutEventHandler _tabToDeleteSpacesInCodeBlockCommandHandler =
             index,
             spaces.length, // two spaces
           )
-          ..afterSelection = Selection.collapse(
-            selection.end.path,
-            selection.endIndex - spaces.length,
+          ..afterSelection = Selection.collapsed(
+            Position(
+              path: selection.end.path,
+              offset: selection.endIndex - spaces.length,
+            ),
           );
         editorState.apply(transaction);
       }
