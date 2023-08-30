@@ -1,6 +1,7 @@
 import 'package:code_block/src/service/actions_service.dart';
 import 'package:code_block/src/utils/file_handling/upload_download_service.dart';
 import 'package:code_block/src/widgets/switch_language_button.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/file_handling/file_picker_impl.dart';
@@ -40,6 +41,7 @@ class ActionsContainer extends StatefulWidget {
 class _ActionsContainerState extends State<ActionsContainer> {
   final programFilePicker = ProgramFilePicker();
   late UploadDownloadService uploadDownloadService;
+  bool isExpanded = false;
 
   @override
   void initState() {
@@ -54,9 +56,46 @@ class _ActionsContainerState extends State<ActionsContainer> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        IconButton(onPressed: copyAllCode, icon: const Icon(Icons.copy_all)),
-        IconButton(onPressed: downloadCode, icon: const Icon(Icons.download)),
-        IconButton(onPressed: uploadCode, icon: const Icon(Icons.upload)),
+        IconButton(
+          onPressed: copyAllCode,
+          icon: const FaIcon(
+            FontAwesomeIcons.solidCopy,
+            size: 16,
+          ),
+          tooltip: "Copy All",
+        ),
+        IconButton(
+          onPressed: toggleExpanded,
+          icon: FaIcon(
+            isExpanded
+                ? FontAwesomeIcons.chevronRight
+                : FontAwesomeIcons.chevronLeft,
+            size: 10,
+          ),
+          tooltip: isExpanded ? "Hide" : "More options",
+        ),
+        isExpanded
+            ? OtherActionsIconButtons(
+                otherActions: [
+                  IconButton(
+                    onPressed: downloadCode,
+                    icon: const FaIcon(
+                      FontAwesomeIcons.download,
+                      size: 16,
+                    ),
+                    tooltip: "Download Code",
+                  ),
+                  IconButton(
+                    onPressed: uploadCode,
+                    icon: const FaIcon(
+                      FontAwesomeIcons.fileImport,
+                      size: 16,
+                    ),
+                    tooltip: "Import Code",
+                  ),
+                ],
+              )
+            : const SizedBox(width: 2),
       ],
     );
   }
@@ -72,5 +111,20 @@ class _ActionsContainerState extends State<ActionsContainer> {
 
   Future<void> uploadCode() async {
     await uploadDownloadService.uploadProgram();
+  }
+
+  void toggleExpanded() => setState(() => isExpanded = !isExpanded);
+}
+
+class OtherActionsIconButtons extends StatelessWidget {
+  const OtherActionsIconButtons({super.key, required this.otherActions});
+
+  final List<Widget> otherActions;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: otherActions,
+    );
   }
 }
