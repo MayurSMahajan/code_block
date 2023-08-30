@@ -121,5 +121,5 @@ class CodeBlockTheme {
 
   String toKey(String key) => key.replaceAll('-', '_');
 
-  TextStyle operator [](String key) => _toMap()[toKey(key)]!;
+  TextStyle? operator [](String key) => _toMap()[toKey(key)];
 }
