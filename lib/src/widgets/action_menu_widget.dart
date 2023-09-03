@@ -17,10 +17,9 @@ class ActionMenuWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         SwitchLanguageButton(actionsService: actionsService),
-        ActionsContainer(actionsService: actionsService),
+        Expanded(child: ActionsContainer(actionsService: actionsService)),
       ],
     );
   }
@@ -41,6 +40,7 @@ class ActionsContainer extends StatefulWidget {
 class _ActionsContainerState extends State<ActionsContainer> {
   final programFilePicker = ProgramFilePicker();
   late UploadDownloadService uploadDownloadService;
+  final TextEditingController fileNameController = TextEditingController();
   bool isExpanded = false;
 
   @override
@@ -56,6 +56,18 @@ class _ActionsContainerState extends State<ActionsContainer> {
   Widget build(BuildContext context) {
     return Row(
       children: [
+        const Spacer(flex: 1),
+        SizedBox(
+          width: 200,
+          height: 44,
+          child: TextField(
+            controller: fileNameController,
+            decoration: const InputDecoration(
+              hintText: "untitled",
+            ),
+          ),
+        ),
+        const Spacer(flex: 1),
         IconButton(
           onPressed: copyAllCode,
           icon: const FaIcon(
@@ -105,7 +117,7 @@ class _ActionsContainerState extends State<ActionsContainer> {
   }
 
   Future<void> downloadCode() async {
-    await uploadDownloadService.downloadProgram();
+    await uploadDownloadService.downloadProgram(fileNameController.value.text);
     //optionally could return a flag, indicating that the operation was completed
   }
 

@@ -13,13 +13,14 @@ class UploadDownloadService {
   final ProgramFilePicker programFilePicker;
   final ActionsService actionsService;
 
-  Future<void> downloadProgram() async {
+  Future<void> downloadProgram(String fileName) async {
     final extension = supportedExtensions[actionsService.language] ?? 'txt';
     final path = await programFilePicker.getDirectoryPath();
     if (path == null) {
       return;
     }
-    final file = File('$path/codeblock.$extension');
+    final name = fileName.isEmpty ? 'codeblock' : fileName;
+    final file = File('$path/$name.$extension');
     final content =
         actionsService.node.delta?.toPlainText() ?? 'Some Problem Occured';
     await file.writeAsString(content);
