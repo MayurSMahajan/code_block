@@ -1,4 +1,3 @@
-import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 
 class SelectableItemListMenu extends StatelessWidget {
@@ -45,10 +44,9 @@ class SelectableItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 32,
-      child: FlowyButton(
-        text: FlowyText.medium(item),
-        rightIcon: isSelected ? const Icon(Icons.check) : null,
-        onTap: onTap,
+      child: TextButton(
+        onPressed: onTap,
+        child: Text(item),
       ),
     );
   }

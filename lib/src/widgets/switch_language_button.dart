@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:appflowy_popover/appflowy_popover.dart';
 import 'package:code_block/src/widgets/selectable_item_list_menu.dart';
 import 'package:code_block/src/utils/utils.dart';
-import 'package:flowy_infra_ui/flowy_infra_ui.dart';
+
+import 'appflowy_popover.dart';
 
 class SwitchLanguageButton extends StatefulWidget {
   const SwitchLanguageButton({
@@ -42,17 +43,23 @@ class _SwitchLanguageButtonState extends State<SwitchLanguageButton> {
         width: maxWidth,
         alignment: Alignment.centerLeft,
         padding: const EdgeInsets.symmetric(horizontal: 4),
-        child: FlowyTextButton(
-          '${language ?? 'auto'} ',
-          padding: const EdgeInsets.symmetric(
-            horizontal: 12.0,
-            vertical: 4.0,
-          ),
-          constraints: const BoxConstraints(maxWidth: maxWidth),
-          fontColor: Theme.of(context).colorScheme.onBackground,
-          fillColor: Colors.transparent,
-          mainAxisAlignment: MainAxisAlignment.start,
+        child: TextButton(
           onPressed: () {},
+          child: Container(
+              constraints: const BoxConstraints(maxWidth: maxWidth),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 12.0,
+                vertical: 4.0,
+              ),
+              decoration: const BoxDecoration(
+                color: Colors.transparent,
+              ),
+              child: Text(
+                language ?? 'auto',
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onBackground,
+                ),
+              )),
         ),
       ),
       popupBuilder: (BuildContext context) {
