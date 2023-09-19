@@ -46,20 +46,21 @@ class _SwitchLanguageButtonState extends State<SwitchLanguageButton> {
         child: TextButton(
           onPressed: () {},
           child: Container(
-              constraints: const BoxConstraints(maxWidth: maxWidth),
-              padding: const EdgeInsets.symmetric(
-                horizontal: 12.0,
-                vertical: 4.0,
+            constraints: const BoxConstraints(maxWidth: maxWidth),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 12.0,
+              vertical: 4.0,
+            ),
+            decoration: const BoxDecoration(
+              color: Colors.transparent,
+            ),
+            child: Text(
+              language ?? 'auto',
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onBackground,
               ),
-              decoration: const BoxDecoration(
-                color: Colors.transparent,
-              ),
-              child: Text(
-                language ?? 'auto',
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.onBackground,
-                ),
-              )),
+            ),
+          ),
         ),
       ),
       popupBuilder: (BuildContext context) {

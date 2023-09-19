@@ -63,7 +63,7 @@ class _ActionsContainerState extends State<ActionsContainer> {
           child: TextField(
             controller: fileNameController,
             decoration: const InputDecoration(
-              hintText: "untitled",
+              hintText: "helloworld.c",
             ),
           ),
         ),
