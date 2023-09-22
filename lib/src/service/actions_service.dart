@@ -39,7 +39,7 @@ class ActionsService {
       ..updateNode(
         node,
         {
-          CodeBlockKeys.delta: newDelta,
+          CodeBlockKeys.delta: newDelta.toJson(),
         },
       );
     await editorState.apply(transaction);
