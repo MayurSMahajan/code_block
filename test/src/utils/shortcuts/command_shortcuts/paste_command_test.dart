@@ -132,7 +132,7 @@ void main() {
 
     testWidgets('works with multiple lines in non-empty codeblock',
         (tester) async {
-      const initialCodeblockText = "initial code";
+      const initialCodeblockText = "initial code\n second line";
       final initialCodeblockDelta = Delta()..insert(initialCodeblockText);
       final editor = tester.editor
         ..initializeWithCodeblock(

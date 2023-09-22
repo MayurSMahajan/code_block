@@ -14,9 +14,12 @@ class ActionsService {
 
   Future<void> updateLanguage(String language) async {
     final transaction = editorState.transaction
-      ..updateNode(node, {
-        CodeBlockKeys.language: language == 'auto' ? null : language,
-      })
+      ..updateNode(
+        node,
+        {
+          CodeBlockKeys.language: language == 'auto' ? null : language,
+        },
+      )
       ..afterSelection = Selection.collapsed(
         Position(
           path: node.path,
@@ -28,14 +31,17 @@ class ActionsService {
 
   //TODO: Does not work
   Future<void> uploadCode(String data) async {
-    // print("data:$data");
-    final delta = Delta()..insert(data);
-    // print("NewDelta: $delta");
+    print("data:$data");
+    final newDelta = Delta()..insert(data);
+    print("NewDelta: ${newDelta.first}");
 
     final transaction = editorState.transaction
-      ..updateNode(node, {
-        CodeBlockKeys.delta: delta,
-      });
+      ..updateNode(
+        node,
+        {
+          CodeBlockKeys.delta: newDelta,
+        },
+      );
     await editorState.apply(transaction);
   }
 
