@@ -4,6 +4,7 @@ import 'character_shortcuts/character_shortcuts.dart';
 import 'command_shortcuts/command_shortcuts.dart';
 
 final List<CharacterShortcutEvent> codeBlockCharacterEvents = [
+  ...bracesInCodeblock,
   enterInCodeBlock,
   ...ignoreKeysInCodeBlock,
 ];
