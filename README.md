@@ -24,7 +24,7 @@ The goal of this project is to develop a Code Block in Flutter as a standalone p
 - [x] Copy All Code
 - [x] Paste Multiple lines of code
 - [x] Export code
-- [ ] Import code
+- [x] Import code
 - [ ] Copy the entire Code Block 
 - [ ] Line numbering
 - [ ] Auto-Indentation

@@ -29,7 +29,11 @@ class CodeBlockComponentWidget extends BlockComponentStatefulWidget {
 }
 
 class _CodeBlockComponentWidgetState extends State<CodeBlockComponentWidget>
-    with SelectableMixin, DefaultSelectableMixin, BlockComponentConfigurable {
+    with
+        SelectableMixin,
+        DefaultSelectableMixin,
+        BlockComponentConfigurable,
+        BlockComponentTextDirectionMixin {
   // the key used to forward focus to the richtext child
   @override
   final forwardKey = GlobalKey(debugLabel: 'flowy_rich_text');
@@ -51,6 +55,8 @@ class _CodeBlockComponentWidgetState extends State<CodeBlockComponentWidget>
   // final popoverController = PopoverController();
 
   late final ActionsService actionsService;
+
+  @override
   late final editorState = widget.editorState;
 
   String? get language => node.attributes[CodeBlockKeys.language] as String?;
@@ -116,6 +122,7 @@ class _CodeBlockComponentWidgetState extends State<CodeBlockComponentWidget>
     return Padding(
       padding: widget.padding,
       child: AppFlowyRichText(
+        delegate: this,
         key: forwardKey,
         node: widget.node,
         editorState: editorState,

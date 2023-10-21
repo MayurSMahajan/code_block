@@ -77,6 +77,13 @@ class TestableEditor {
     if (withFloatingToolbar) {
       scrollController ??= ScrollController();
     }
+
+    final editorScrollController = EditorScrollController(
+      editorState: editorState,
+      shrinkWrap: shrinkWrap,
+      scrollController: scrollController,
+    );
+
     Widget editor = AppFlowyEditor(
       editorState: editorState,
       editable: editable,
@@ -85,7 +92,7 @@ class TestableEditor {
       blockComponentBuilders: blockComponentBuilders,
       autoFocus: autoFocus,
       shrinkWrap: shrinkWrap,
-      scrollController: scrollController,
+      editorScrollController: editorScrollController,
       editorStyle:
           inMobile ? const EditorStyle.mobile() : const EditorStyle.desktop(),
     );
@@ -106,7 +113,7 @@ class TestableEditor {
               child: AppFlowyEditor(
                 editorStyle: const EditorStyle.mobile(),
                 editorState: editorState,
-                scrollController: scrollController,
+                editorScrollController: editorScrollController,
               ),
             ),
             MobileToolbar(
@@ -129,7 +136,8 @@ class TestableEditor {
             buildHighlightColorItem()
           ],
           editorState: editorState,
-          scrollController: scrollController!,
+          editorScrollController: editorScrollController,
+          textDirection: null,
           child: editor,
         );
       }
