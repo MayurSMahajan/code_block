@@ -4,13 +4,9 @@ import 'package:code_block/src/widgets/widgets.dart';
 
 class CodeBlockComponentBuilder extends BlockComponentBuilder {
   CodeBlockComponentBuilder({
-    this.configuration = const BlockComponentConfiguration(),
     this.padding = const EdgeInsets.all(0),
     required this.editorState,
   });
-
-  @override
-  final BlockComponentConfiguration configuration;
 
   final EdgeInsets padding;
 

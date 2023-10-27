@@ -303,12 +303,8 @@ class TestableEditor {
   Map<String, BlockComponentBuilder> _customBlockComponentBuilders(
     EditorState editorState,
   ) {
-    final configuration = BlockComponentConfiguration(
-      padding: (_) => const EdgeInsets.symmetric(vertical: 5.0),
-    );
     final customBlockComponentBuilderMap = {
       CodeBlockKeys.type: CodeBlockComponentBuilder(
-        configuration: configuration,
         padding: const EdgeInsets.only(
           left: 30,
           right: 30,
