@@ -18,7 +18,9 @@ class ActionMenuWidget extends StatelessWidget {
     return Row(
       children: [
         SwitchLanguageButton(actionsService: actionsService),
-        Expanded(child: ActionsContainer(actionsService: actionsService)),
+        Expanded(
+          child: ActionsContainer(actionsService: actionsService),
+        ),
       ],
     );
   }
@@ -40,7 +42,6 @@ class _ActionsContainerState extends State<ActionsContainer> {
   final programFilePicker = ProgramFilePicker();
   late UploadDownloadService uploadDownloadService;
   final TextEditingController fileNameController = TextEditingController();
-  bool isExpanded = false;
 
   @override
   void initState() {
@@ -74,33 +75,23 @@ class _ActionsContainerState extends State<ActionsContainer> {
           ),
           tooltip: "Copy All",
         ),
+        const SizedBox(width: 12),
         IconButton(
-          onPressed: toggleExpanded,
-          icon: Icon(
-            isExpanded ? Icons.chevron_right : Icons.chevron_left,
+          onPressed: downloadCode,
+          icon: const Icon(
+            Icons.download_outlined,
           ),
-          tooltip: isExpanded ? "Hide" : "More options",
+          tooltip: "Download Code",
         ),
-        isExpanded
-            ? OtherActionsIconButtons(
-                otherActions: [
-                  IconButton(
-                    onPressed: downloadCode,
-                    icon: const Icon(
-                      Icons.download_outlined,
-                    ),
-                    tooltip: "Download Code",
-                  ),
-                  IconButton(
-                    onPressed: uploadCode,
-                    icon: const Icon(
-                      Icons.upload_file,
-                    ),
-                    tooltip: "Import Code",
-                  ),
-                ],
-              )
-            : const SizedBox(width: 2),
+        const SizedBox(width: 12),
+        IconButton(
+          onPressed: uploadCode,
+          icon: const Icon(
+            Icons.upload_file,
+          ),
+          tooltip: "Import Code",
+        ),
+        const SizedBox(width: 12),
       ],
     );
   }
@@ -116,20 +107,5 @@ class _ActionsContainerState extends State<ActionsContainer> {
 
   Future<void> uploadCode() async {
     await uploadDownloadService.uploadProgram();
-  }
-
-  void toggleExpanded() => setState(() => isExpanded = !isExpanded);
-}
-
-class OtherActionsIconButtons extends StatelessWidget {
-  const OtherActionsIconButtons({super.key, required this.otherActions});
-
-  final List<Widget> otherActions;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: otherActions,
-    );
   }
 }

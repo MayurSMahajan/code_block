@@ -62,6 +62,8 @@ class _CodeBlockComponentWidgetState extends State<CodeBlockComponentWidget>
   String? get language => node.attributes[CodeBlockKeys.language] as String?;
   String? autoDetectLanguage;
 
+  bool showActions = false;
+
   @override
   void initState() {
     super.initState();
@@ -70,37 +72,40 @@ class _CodeBlockComponentWidgetState extends State<CodeBlockComponentWidget>
 
   @override
   Widget build(BuildContext context) {
-    Widget child = Container(
-      decoration: BoxDecoration(
-        borderRadius: const BorderRadius.all(Radius.circular(8.0)),
-        color: Colors.grey.withOpacity(0.1),
-      ),
-      width: MediaQuery.of(context).size.width,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          ActionMenuWidget(actionsService: actionsService),
-          _buildCodeBlock(context),
-        ],
+    return BlockComponentActionWrapper(
+      node: widget.node,
+      actionBuilder: widget.actionBuilder!,
+      child: Padding(
+        key: blockComponentKey,
+        padding: padding,
+        child: InkWell(
+          onTap: () {},
+          onHover: (hover) {
+            setState(() {
+              showActions = hover;
+            });
+          },
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 500),
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+              color: Colors.grey.shade100,
+            ),
+            width: MediaQuery.of(context).size.width,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                showActions
+                    ? ActionMenuWidget(actionsService: actionsService)
+                    : const SizedBox(height: 24),
+                _buildCodeBlock(context),
+              ],
+            ),
+          ),
+        ),
       ),
     );
-
-    child = Padding(
-      key: blockComponentKey,
-      padding: padding,
-      child: child,
-    );
-
-    if (widget.actionBuilder != null) {
-      child = BlockComponentActionWrapper(
-        node: widget.node,
-        actionBuilder: widget.actionBuilder!,
-        child: child,
-      );
-    }
-
-    return child;
   }
 
   Widget _buildCodeBlock(BuildContext context) {
