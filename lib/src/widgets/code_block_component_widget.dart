@@ -122,6 +122,7 @@ class _CodeBlockComponentWidgetState extends State<CodeBlockComponentWidget>
   Widget _buildCodeBlock(BuildContext context) {
     final delta = node.delta ?? Delta();
     final content = delta.toPlainText();
+    final isLightMode = Theme.of(context).brightness == Brightness.light;
 
     final result = highlight.highlight.parse(
       content,
@@ -134,7 +135,7 @@ class _CodeBlockComponentWidgetState extends State<CodeBlockComponentWidget>
     if (codeNodes == null) {
       throw Exception('Code block parse error.');
     }
-    final codeTextSpans = _convert(codeNodes);
+    final codeTextSpans = _convert(codeNodes, isLightMode: isLightMode);
     return Padding(
       padding: widget.padding,
       child: AppFlowyRichText(
@@ -160,10 +161,15 @@ class _CodeBlockComponentWidgetState extends State<CodeBlockComponentWidget>
 
   // Copy from flutter.highlight package.
   // https://github.com/git-touch/highlight.dart/blob/master/flutter_highlight/lib/flutter_highlight.dart
-  List<TextSpan> _convert(List<highlight.Node> nodes) {
+  List<TextSpan> _convert(
+    List<highlight.Node> nodes, {
+    bool isLightMode = true,
+  }) {
     final List<TextSpan> spans = [];
     var currentSpans = spans;
     final List<List<TextSpan>> stack = [];
+
+    final codeblockTheme = isLightMode ? defaultLightTheme : defaultDarkTheme;
 
     void traverse(highlight.Node node) {
       if (node.value != null) {
@@ -172,7 +178,7 @@ class _CodeBlockComponentWidgetState extends State<CodeBlockComponentWidget>
               ? TextSpan(text: node.value)
               : TextSpan(
                   text: node.value,
-                  style: widget.theme[node.className!],
+                  style: codeblockTheme[node.className!],
                 ),
         );
       } else if (node.children != null) {
@@ -180,7 +186,7 @@ class _CodeBlockComponentWidgetState extends State<CodeBlockComponentWidget>
         currentSpans.add(
           TextSpan(
             children: tmp,
-            style: widget.theme[node.className!],
+            style: codeblockTheme[node.className!],
           ),
         );
         stack.add(currentSpans);
