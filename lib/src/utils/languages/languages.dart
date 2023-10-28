@@ -8,6 +8,7 @@ final supportedLanguages = [
   'C#',
   'CPP',
   'Clojure',
+  'CS',
   'CSS',
   'Dart',
   'Docker',
