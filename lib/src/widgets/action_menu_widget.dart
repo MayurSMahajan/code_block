@@ -1,6 +1,5 @@
 import 'package:code_block/src/service/actions_service.dart';
 import 'package:code_block/src/utils/file_handling/upload_download_service.dart';
-import 'package:code_block/src/widgets/switch_language_button.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/file_handling/file_picker_impl.dart';
@@ -17,10 +16,7 @@ class ActionMenuWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        SwitchLanguageButton(actionsService: actionsService),
-        Expanded(
-          child: ActionsContainer(actionsService: actionsService),
-        ),
+        ActionsContainer(actionsService: actionsService),
       ],
     );
   }
@@ -41,7 +37,6 @@ class ActionsContainer extends StatefulWidget {
 class _ActionsContainerState extends State<ActionsContainer> {
   final programFilePicker = ProgramFilePicker();
   late UploadDownloadService uploadDownloadService;
-  final TextEditingController fileNameController = TextEditingController();
 
   @override
   void initState() {
@@ -56,22 +51,12 @@ class _ActionsContainerState extends State<ActionsContainer> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Spacer(flex: 1),
-        SizedBox(
-          width: 200,
-          height: 44,
-          child: TextField(
-            controller: fileNameController,
-            decoration: const InputDecoration(
-              hintText: "helloworld.c",
-            ),
-          ),
-        ),
-        const Spacer(flex: 1),
+        const SizedBox(width: 12),
         IconButton(
           onPressed: copyAllCode,
           icon: const Icon(
             Icons.copy_rounded,
+            size: 20,
           ),
           tooltip: "Copy All",
         ),
@@ -80,6 +65,7 @@ class _ActionsContainerState extends State<ActionsContainer> {
           onPressed: downloadCode,
           icon: const Icon(
             Icons.download_outlined,
+            size: 20,
           ),
           tooltip: "Download Code",
         ),
@@ -88,6 +74,7 @@ class _ActionsContainerState extends State<ActionsContainer> {
           onPressed: uploadCode,
           icon: const Icon(
             Icons.upload_file,
+            size: 20,
           ),
           tooltip: "Import Code",
         ),
@@ -101,7 +88,7 @@ class _ActionsContainerState extends State<ActionsContainer> {
   }
 
   Future<void> downloadCode() async {
-    await uploadDownloadService.downloadProgram(fileNameController.value.text);
+    await uploadDownloadService.downloadProgram('codeblock');
     //optionally could return a flag, indicating that the operation was completed
   }
 

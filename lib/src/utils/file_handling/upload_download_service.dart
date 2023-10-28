@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:code_block/src/service/actions_service.dart';
 import 'package:code_block/src/utils/file_handling/file_picker_impl.dart';
@@ -33,12 +34,16 @@ class UploadDownloadService {
     );
     if (pickedFile == null) return;
 
-    PlatformFile platformFile = pickedFile.files.first;
-    final file = File('${platformFile.path}');
-    // Read the file
-    final contents = await file.readAsString();
-    if (contents.isNotEmpty) {
-      await actionsService.uploadCode(contents);
+    try {
+      PlatformFile platformFile = pickedFile.files.first;
+      final file = File('${platformFile.path}');
+      // Read the file
+      final contents = await file.readAsString();
+      if (contents.isNotEmpty) {
+        await actionsService.uploadCode(contents);
+      }
+    } catch (e) {
+      log('Error Occured: ', error: e);
     }
   }
 }

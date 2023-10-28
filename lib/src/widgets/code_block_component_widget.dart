@@ -2,7 +2,6 @@ import 'package:code_block/src/service/actions_service.dart';
 import 'package:code_block/src/utils/themes/code_block_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-// import 'package:appflowy_popover/appflowy_popover.dart';
 import 'package:code_block/src/widgets/widgets.dart';
 import 'package:code_block/src/utils/utils.dart';
 import 'package:highlight/highlight.dart' as highlight;
@@ -96,9 +95,21 @@ class _CodeBlockComponentWidgetState extends State<CodeBlockComponentWidget>
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                showActions
-                    ? ActionMenuWidget(actionsService: actionsService)
-                    : const SizedBox(height: 24),
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: SwitchLanguageButton(
+                        actionsService: actionsService,
+                        editorState: editorState,
+                      ),
+                    ),
+                    const Spacer(flex: 3),
+                    showActions
+                        ? ActionMenuWidget(actionsService: actionsService)
+                        : const SizedBox.shrink(),
+                  ],
+                ),
                 _buildCodeBlock(context),
               ],
             ),
