@@ -1,7 +1,6 @@
 import 'package:code_block/src/service/actions_service.dart';
 import 'package:code_block/src/utils/file_handling/upload_download_service.dart';
 import 'package:code_block/src/widgets/switch_language_button.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/file_handling/file_picker_impl.dart';
@@ -70,19 +69,15 @@ class _ActionsContainerState extends State<ActionsContainer> {
         const Spacer(flex: 1),
         IconButton(
           onPressed: copyAllCode,
-          icon: const FaIcon(
-            FontAwesomeIcons.solidCopy,
-            size: 16,
+          icon: const Icon(
+            Icons.copy_rounded,
           ),
           tooltip: "Copy All",
         ),
         IconButton(
           onPressed: toggleExpanded,
-          icon: FaIcon(
-            isExpanded
-                ? FontAwesomeIcons.chevronRight
-                : FontAwesomeIcons.chevronLeft,
-            size: 10,
+          icon: Icon(
+            isExpanded ? Icons.chevron_right : Icons.chevron_left,
           ),
           tooltip: isExpanded ? "Hide" : "More options",
         ),
@@ -91,17 +86,15 @@ class _ActionsContainerState extends State<ActionsContainer> {
                 otherActions: [
                   IconButton(
                     onPressed: downloadCode,
-                    icon: const FaIcon(
-                      FontAwesomeIcons.download,
-                      size: 16,
+                    icon: const Icon(
+                      Icons.download_outlined,
                     ),
                     tooltip: "Download Code",
                   ),
                   IconButton(
                     onPressed: uploadCode,
-                    icon: const FaIcon(
-                      FontAwesomeIcons.fileImport,
-                      size: 16,
+                    icon: const Icon(
+                      Icons.upload_file,
                     ),
                     tooltip: "Import Code",
                   ),

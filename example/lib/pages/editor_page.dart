@@ -52,7 +52,6 @@ class _EditorPageState extends State<EditorPage> {
       characterShortcutEvents: characterShortcutEvents,
       commandShortcutEvents: commandShortcutEvents,
       blockComponentBuilders: blockComponentBuilders,
-      footer: const SizedBox(height: 200),
     );
   }
 }
