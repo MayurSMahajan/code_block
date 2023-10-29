@@ -50,7 +50,7 @@ Future<void> _testBraceShortcut({
     Selection.single(path: [0], startOffset: 0),
   );
 
-  // press shift + enter
+  // press the key under test
   await editor.pressKey(
     character: braceOpening,
   );

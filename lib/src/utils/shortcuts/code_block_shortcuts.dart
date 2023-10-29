@@ -7,6 +7,7 @@ final List<CharacterShortcutEvent> codeBlockCharacterEvents = [
   ...bracesInCodeblock,
   enterInCodeBlock,
   ...ignoreKeysInCodeBlock,
+  ...ignoreBracesInCodeblock,
 ];
 
 final List<CommandShortcutEvent> codeBlockCommandEvents = [
