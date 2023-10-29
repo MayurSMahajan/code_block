@@ -1,7 +1,7 @@
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:code_block/src/service/actions_service.dart';
+import 'package:code_block/src/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:code_block/src/widgets/selectable_item_list_menu.dart';
 import 'package:code_block/src/utils/utils.dart';
 
 class SwitchLanguageButton extends StatefulWidget {
@@ -23,29 +23,17 @@ class _SwitchLanguageButtonState extends State<SwitchLanguageButton> {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton.icon(
-      onPressed: () => showActionMenu(
+    return ButtonWithTrailingIcon(
+      onTap: () => showActionMenu(
         context: context,
         editorState: widget.editorState,
         actionsService: widget.actionsService,
       ),
-      label: Container(
-        constraints: const BoxConstraints(maxWidth: 120),
-        padding: const EdgeInsets.symmetric(
-          horizontal: 12,
-          vertical: 4,
-        ),
-        decoration: const BoxDecoration(
-          color: Colors.transparent,
-        ),
-        child: Text(
-          language ?? 'auto',
-          style: TextStyle(
-            color: Theme.of(context).colorScheme.onBackground,
-          ),
-        ),
+      text: language ?? 'auto',
+      icon: const Icon(
+        Icons.expand_more,
+        size: 16,
       ),
-      icon: const Icon(Icons.arrow_drop_down),
     );
   }
 }
