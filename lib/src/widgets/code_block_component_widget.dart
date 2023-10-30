@@ -84,10 +84,9 @@ class _CodeBlockComponentWidgetState extends State<CodeBlockComponentWidget>
               showActions = hover;
             });
           },
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 500),
+          child: Container(
             decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+              borderRadius: const BorderRadius.all(Radius.circular(5.0)),
               color: Colors.grey.shade100,
             ),
             width: MediaQuery.of(context).size.width,
@@ -95,21 +94,12 @@ class _CodeBlockComponentWidgetState extends State<CodeBlockComponentWidget>
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
-                      child: SwitchLanguageButton(
+                showActions
+                    ? ActionMenuWidget(
                         actionsService: actionsService,
                         editorState: editorState,
-                      ),
-                    ),
-                    const Spacer(flex: 3),
-                    showActions
-                        ? ActionMenuWidget(actionsService: actionsService)
-                        : const SizedBox.shrink(),
-                  ],
-                ),
+                      )
+                    : const SizedBox(height: 40),
                 _buildCodeBlock(context),
               ],
             ),

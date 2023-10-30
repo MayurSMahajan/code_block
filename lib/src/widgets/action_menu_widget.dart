@@ -1,5 +1,7 @@
+import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:code_block/src/service/actions_service.dart';
 import 'package:code_block/src/utils/file_handling/upload_download_service.dart';
+import 'package:code_block/src/widgets/switch_language_button.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/file_handling/file_picker_impl.dart';
@@ -8,14 +10,19 @@ class ActionMenuWidget extends StatelessWidget {
   const ActionMenuWidget({
     super.key,
     required this.actionsService,
+    required this.editorState,
   });
 
   final ActionsService actionsService;
+  final EditorState editorState;
 
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
+        SwitchLanguageButton(
+            actionsService: actionsService, editorState: editorState),
         ActionsContainer(actionsService: actionsService),
       ],
     );
