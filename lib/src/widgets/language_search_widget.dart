@@ -35,20 +35,16 @@ class _LanguageSearchWidgetState extends State<LanguageSearchWidget> {
           SizedBox(
             height: 40,
             child: TextField(
-              cursorHeight: 20,
               onChanged: (value) => setState(() {
                 query.value = value;
               }),
-              decoration: const InputDecoration(
-                constraints: BoxConstraints(
-                  minHeight: 30,
-                  minWidth: 120,
-                  maxHeight: 34,
-                  maxWidth: 120,
-                ),
-                border: UnderlineInputBorder(),
-                hintText: 'search',
-              ),
+              onSubmitted: (value) {
+                if (query.value.isNotEmpty) {
+                  widget.actionsService.updateLanguage(langs.first);
+                  widget.dismissCall();
+                }
+              },
+              decoration: buildInputDecoration(context),
             ),
           ),
           SizedBox(
@@ -87,7 +83,7 @@ class _LanguageSearchWidgetState extends State<LanguageSearchWidget> {
 BoxDecoration buildOverlayDecoration(BuildContext context) {
   return BoxDecoration(
     color: Theme.of(context).cardColor,
-    borderRadius: BorderRadius.circular(6),
+    borderRadius: BorderRadius.circular(8),
     boxShadow: [
       BoxShadow(
         color: Colors.grey.shade800,
@@ -95,5 +91,46 @@ BoxDecoration buildOverlayDecoration(BuildContext context) {
         offset: const Offset(0, 2),
       ),
     ],
+  );
+}
+
+InputDecoration buildInputDecoration(BuildContext context) {
+  return InputDecoration(
+    constraints: const BoxConstraints(maxHeight: 32),
+    contentPadding: const EdgeInsets.symmetric(horizontal: 12),
+    enabledBorder: OutlineInputBorder(
+      borderSide: BorderSide(
+        color: Theme.of(context).colorScheme.outline,
+        width: 1.0,
+      ),
+      borderRadius: const BorderRadius.all(Radius.circular(8)),
+    ),
+    isDense: false,
+    hintText: 'search language',
+    hintStyle: Theme.of(context)
+        .textTheme
+        .bodySmall!
+        .copyWith(color: Theme.of(context).hintColor),
+    focusedBorder: OutlineInputBorder(
+      borderSide: BorderSide(
+        color: Theme.of(context).colorScheme.primary,
+        width: 1.0,
+      ),
+      borderRadius: const BorderRadius.all(Radius.circular(8)),
+    ),
+    errorBorder: OutlineInputBorder(
+      borderSide: BorderSide(
+        color: Theme.of(context).colorScheme.error,
+        width: 1.0,
+      ),
+      borderRadius: const BorderRadius.all(Radius.circular(8)),
+    ),
+    focusedErrorBorder: OutlineInputBorder(
+      borderSide: BorderSide(
+        color: Theme.of(context).colorScheme.error,
+        width: 1.0,
+      ),
+      borderRadius: const BorderRadius.all(Radius.circular(8)),
+    ),
   );
 }
