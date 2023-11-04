@@ -1,4 +1,4 @@
-import 'package:code_block/code_block.dart';
+import 'package:appflowy_code_block/appflowy_code_block.dart';
 import 'package:flutter/material.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 

@@ -1,5 +1,5 @@
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:code_block/code_block.dart';
+import 'package:appflowy_code_block/appflowy_code_block.dart';
 
 /// press any brace key in code block to insert the closing brace as well.
 ///

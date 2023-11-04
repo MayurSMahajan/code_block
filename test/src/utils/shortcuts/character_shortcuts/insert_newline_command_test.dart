@@ -1,6 +1,6 @@
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:code_block/code_block.dart';
-import 'package:code_block/src/utils/shortcuts/character_shortcuts/character_shortcuts.dart';
+import 'package:appflowy_code_block/appflowy_code_block.dart';
+import 'package:appflowy_code_block/src/utils/shortcuts/character_shortcuts/character_shortcuts.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../../helpers/infra/testable_editor.dart';

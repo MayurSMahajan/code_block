@@ -1,7 +1,6 @@
-import 'package:code_block/src/levenshtein.dart';
-import 'package:code_block/src/service/actions_service.dart';
-import 'package:code_block/src/utils/utils.dart';
-import 'package:code_block/src/widgets/selectable_item_list_menu.dart';
+import 'package:appflowy_code_block/src/service/actions_service.dart';
+import 'package:appflowy_code_block/src/utils/utils.dart';
+import 'package:appflowy_code_block/src/widgets/selectable_item_list_menu.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 

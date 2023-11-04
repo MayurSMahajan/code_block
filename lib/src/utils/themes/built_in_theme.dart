@@ -1,4 +1,4 @@
-import 'package:code_block/src/utils/themes/code_block_theme.dart';
+import 'package:appflowy_code_block/src/utils/themes/code_block_theme.dart';
 import 'package:flutter/material.dart';
 
 const builtInCodeBlockTheme = CodeBlockTheme(

@@ -1,7 +1,6 @@
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:code_block/src/service/actions_service.dart';
-import 'package:code_block/src/widgets/language_search_widget.dart';
-import 'package:code_block/src/widgets/widgets.dart';
+import 'package:appflowy_code_block/src/service/actions_service.dart';
+import 'package:appflowy_code_block/src/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class SwitchLanguageButton extends StatelessWidget {

@@ -1,9 +1,9 @@
-import 'package:code_block/src/service/actions_service.dart';
-import 'package:code_block/src/utils/themes/code_block_theme.dart';
+import 'package:appflowy_code_block/src/service/actions_service.dart';
+import 'package:appflowy_code_block/src/utils/themes/code_block_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:code_block/src/widgets/widgets.dart';
-import 'package:code_block/src/utils/utils.dart';
+import 'package:appflowy_code_block/src/widgets/widgets.dart';
+import 'package:appflowy_code_block/src/utils/utils.dart';
 import 'package:highlight/highlight.dart' as highlight;
 
 class CodeBlockComponentWidget extends BlockComponentStatefulWidget {

@@ -1,4 +1,4 @@
-name: code_block
+name: appflowy_code_block
 description: CodeBlock Component that provides a rich code block using AppFlowy Editor.
 version: 0.0.1
 homepage: https://github.com/MayurSMahajan/code_block

@@ -1,6 +1,6 @@
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:code_block/src/service/actions_service.dart';
-import 'package:code_block/src/utils/code_block_node/code_block_node.dart';
+import 'package:appflowy_code_block/src/service/actions_service.dart';
+import 'package:appflowy_code_block/src/utils/code_block_node/code_block_node.dart';
 import 'package:flutter_test/flutter_test.dart';
 // import 'package:mocktail/mocktail.dart';
 

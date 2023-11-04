@@ -1,5 +1,5 @@
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:code_block/src/utils/code_block_node/code_block_node.dart';
+import 'package:appflowy_code_block/src/utils/code_block_node/code_block_node.dart';
 
 class ActionsService {
   final EditorState editorState;

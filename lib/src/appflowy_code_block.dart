@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:code_block/src/widgets/widgets.dart';
+import 'package:appflowy_code_block/src/widgets/widgets.dart';
 
 class CodeBlockComponentBuilder extends BlockComponentBuilder {
   CodeBlockComponentBuilder({

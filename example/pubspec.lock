@@ -17,6 +17,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.13.0"
+  appflowy_code_block:
+    dependency: "direct main"
+    description:
+      path: ".."
+      relative: true
+    source: path
+    version: "0.0.1"
   appflowy_editor:
     dependency: "direct main"
     description:
@@ -81,13 +88,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
-  code_block:
-    dependency: "direct main"
-    description:
-      path: ".."
-      relative: true
-    source: path
-    version: "0.0.1"
   collection:
     dependency: transitive
     description:

@@ -1,5 +1,5 @@
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:code_block/code_block.dart';
+import 'package:appflowy_code_block/appflowy_code_block.dart';
 import 'package:flutter/material.dart';
 
 /// shift + enter to insert a new node next to the code block.

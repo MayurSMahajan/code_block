@@ -1,8 +1,8 @@
 import 'dart:developer';
 import 'dart:io';
-import 'package:code_block/src/service/actions_service.dart';
-import 'package:code_block/src/utils/file_handling/file_picker_impl.dart';
-import 'package:code_block/src/utils/languages/extensions.dart';
+import 'package:appflowy_code_block/src/service/actions_service.dart';
+import 'package:appflowy_code_block/src/utils/file_handling/file_picker_impl.dart';
+import 'package:appflowy_code_block/src/utils/languages/extensions.dart';
 import 'package:file_picker/file_picker.dart';
 
 class UploadDownloadService {
