@@ -9,6 +9,7 @@ environment:
 
 dependencies:
   appflowy_editor: ^1.5.0
+  collection: ^1.17.1
   flutter:
     sdk: flutter
   highlight: ^0.7.0

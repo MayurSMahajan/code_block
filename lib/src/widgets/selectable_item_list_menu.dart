@@ -10,7 +10,7 @@ class SelectableItemListMenu extends StatelessWidget {
 
   final List<String> items;
   final int selectedIndex;
-  final void Function(int) onSelected;
+  final void Function(String) onSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class SelectableItemListMenu extends StatelessWidget {
         return SelectableItem(
           isSelected: index == selectedIndex,
           item: item,
-          onTap: () => onSelected(index),
+          onTap: () => onSelected(item),
         );
       },
       itemCount: items.length,

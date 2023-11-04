@@ -1,8 +1,8 @@
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:code_block/src/service/actions_service.dart';
+import 'package:code_block/src/widgets/language_search_widget.dart';
 import 'package:code_block/src/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:code_block/src/utils/utils.dart';
 
 class SwitchLanguageButton extends StatefulWidget {
   const SwitchLanguageButton({
@@ -36,54 +36,40 @@ class _SwitchLanguageButtonState extends State<SwitchLanguageButton> {
       ),
     );
   }
-}
 
-void showActionMenu({
-  required BuildContext context,
-  required EditorState editorState,
-  required ActionsService actionsService,
-  String selectedLanguage = 'auto',
-}) {
-  final Offset pos =
-      (context.findRenderObject() as RenderBox).localToGlobal(Offset.zero);
-  final rect = Rect.fromLTWH(
-    pos.dx,
-    pos.dy,
-    context.size?.width ?? 0,
-    context.size?.height ?? 0,
-  );
-  OverlayEntry? overlay;
+  void showActionMenu({
+    required BuildContext context,
+    required EditorState editorState,
+    required ActionsService actionsService,
+  }) {
+    final Offset pos =
+        (context.findRenderObject() as RenderBox).localToGlobal(Offset.zero);
+    final rect = Rect.fromLTWH(
+      pos.dx,
+      pos.dy,
+      context.size?.width ?? 0,
+      context.size?.height ?? 0,
+    );
+    OverlayEntry? overlay;
 
-  var (top, bottom, left) = positionFromRect(rect, editorState);
-  top = top != null ? top - 6 : top;
+    var (top, bottom, left) = positionFromRect(rect, editorState);
+    top = top != null ? top - 6 : top;
 
-  void dismissOverlay() {
-    overlay?.remove();
-    overlay = null;
+    void dismissOverlay() {
+      overlay?.remove();
+      overlay = null;
+    }
+
+    overlay = FullScreenOverlayEntry(
+      top: top,
+      bottom: bottom,
+      left: left,
+      builder: (context) {
+        return const LanguageSearchWidget();
+      },
+    ).build();
+    Overlay.of(context).insert(overlay!);
   }
-
-  overlay = FullScreenOverlayEntry(
-    top: top,
-    bottom: bottom,
-    left: left,
-    builder: (context) {
-      return Container(
-        width: 140,
-        height: 240,
-        decoration: buildOverlayDecoration(context),
-        padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 6),
-        child: SelectableItemListMenu(
-          items: languages.map((e) => e).toList(),
-          selectedIndex: languages.indexOf(selectedLanguage),
-          onSelected: (index) {
-            actionsService.updateLanguage(languages[index]);
-            dismissOverlay();
-          },
-        ),
-      );
-    },
-  ).build();
-  Overlay.of(context).insert(overlay!);
 }
 
 (double?, double?, double?) positionFromRect(
@@ -104,18 +90,4 @@ void showActionMenu({
   }
 
   return (top, bottom, left);
-}
-
-BoxDecoration buildOverlayDecoration(BuildContext context) {
-  return BoxDecoration(
-    color: Theme.of(context).cardColor,
-    borderRadius: BorderRadius.circular(6),
-    boxShadow: [
-      BoxShadow(
-        color: Colors.grey.shade800,
-        blurRadius: 10,
-        offset: const Offset(0, 2),
-      ),
-    ],
-  );
 }
