@@ -4,17 +4,16 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.0.3 <4.0.0'
+  sdk: '>=3.0.1 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.2
   flutter_localizations:
     sdk: flutter
   intl: any
-  appflowy_editor: ^1.1.0
+  appflowy_editor: ^1.5.1
   code_block:
     path: ../
 

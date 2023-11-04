@@ -8,7 +8,7 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
-  appflowy_editor: ^1.5.0
+  appflowy_editor: ^1.5.1
   collection: ^1.17.1
   flutter:
     sdk: flutter
