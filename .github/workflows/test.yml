@@ -1,0 +1,52 @@
+name: code_block test
+
+on:
+  push:
+    branches:
+      - "main"
+
+  pull_request:
+    branches:
+      - "main"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  FLUTTER_VERSION: "3.10.1"
+  
+jobs:
+  desktop:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+          flutter-version: "3.10.1"
+          cache: true
+
+      - name: Run tests
+        run: |
+          flutter pub get
+          flutter analyze .
+          dart format --set-exit-if-changed .
+          flutter test --coverage
+
+      - name: Upload coverage to Codecov
+        uses: Wandalen/wretry.action@v1.0.36
+        with:
+          action: codecov/codecov-action@v3
+          with: |
+            fail_ci_if_error: true
+            verbose: true
+            os: ${{ matrix.os }}
+            token: ${{ secrets.CODECOV_TOKEN }}
+          attempt_limit: 10
+          attempt_delay: 10000
