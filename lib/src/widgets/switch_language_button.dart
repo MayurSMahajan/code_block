@@ -4,7 +4,7 @@ import 'package:code_block/src/widgets/language_search_widget.dart';
 import 'package:code_block/src/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
-class SwitchLanguageButton extends StatefulWidget {
+class SwitchLanguageButton extends StatelessWidget {
   const SwitchLanguageButton({
     super.key,
     required this.actionsService,
@@ -15,21 +15,14 @@ class SwitchLanguageButton extends StatefulWidget {
   final EditorState editorState;
 
   @override
-  State<SwitchLanguageButton> createState() => _SwitchLanguageButtonState();
-}
-
-class _SwitchLanguageButtonState extends State<SwitchLanguageButton> {
-  String? get language => widget.actionsService.language;
-
-  @override
   Widget build(BuildContext context) {
     return ButtonWithTrailingIcon(
       onTap: () => showActionMenu(
         context: context,
-        editorState: widget.editorState,
-        actionsService: widget.actionsService,
+        editorState: editorState,
+        actionsService: actionsService,
       ),
-      text: language ?? 'auto',
+      text: actionsService.language ?? 'auto',
       icon: const Icon(
         Icons.expand_more,
         size: 16,
@@ -65,7 +58,10 @@ class _SwitchLanguageButtonState extends State<SwitchLanguageButton> {
       bottom: bottom,
       left: left,
       builder: (context) {
-        return const LanguageSearchWidget();
+        return LanguageSearchWidget(
+          actionsService: actionsService,
+          dismissCall: dismissOverlay,
+        );
       },
     ).build();
     Overlay.of(context).insert(overlay!);

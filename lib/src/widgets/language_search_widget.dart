@@ -1,13 +1,19 @@
-import 'dart:developer';
-
 import 'package:code_block/src/levenshtein.dart';
+import 'package:code_block/src/service/actions_service.dart';
 import 'package:code_block/src/utils/utils.dart';
 import 'package:code_block/src/widgets/selectable_item_list_menu.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
 class LanguageSearchWidget extends StatefulWidget {
-  const LanguageSearchWidget({super.key});
+  const LanguageSearchWidget({
+    required this.actionsService,
+    required this.dismissCall,
+    super.key,
+  });
+
+  final ActionsService actionsService;
+  final VoidCallback dismissCall;
 
   @override
   State<LanguageSearchWidget> createState() => _LanguageSearchWidgetState();
@@ -32,7 +38,6 @@ class _LanguageSearchWidgetState extends State<LanguageSearchWidget> {
               cursorHeight: 20,
               onChanged: (value) => setState(() {
                 query.value = value;
-                log('Query: $query.value');
               }),
               decoration: const InputDecoration(
                 constraints: BoxConstraints(
@@ -42,7 +47,7 @@ class _LanguageSearchWidgetState extends State<LanguageSearchWidget> {
                   maxWidth: 120,
                 ),
                 border: UnderlineInputBorder(),
-                hintText: 'type rust',
+                hintText: 'search',
               ),
             ),
           ),
@@ -60,16 +65,14 @@ class _LanguageSearchWidgetState extends State<LanguageSearchWidget> {
                       )
                       .sorted((a, b) => levenshtein(a, b))
                       .toList();
-
-                  log('displayed list: $langs');
                 } else {
                   langs = languages;
                 }
                 return SelectableItemListMenu(
                   items: langs,
-                  selectedIndex: 0,
                   onSelected: (value) {
-                    log('the selected: $value');
+                    widget.actionsService.updateLanguage(value);
+                    widget.dismissCall();
                   },
                 );
               },

@@ -4,12 +4,10 @@ class SelectableItemListMenu extends StatelessWidget {
   const SelectableItemListMenu({
     super.key,
     required this.items,
-    required this.selectedIndex,
     required this.onSelected,
   });
 
   final List<String> items;
-  final int selectedIndex;
   final void Function(String) onSelected;
 
   @override
@@ -18,7 +16,6 @@ class SelectableItemListMenu extends StatelessWidget {
       itemBuilder: (context, index) {
         final item = items[index];
         return SelectableItem(
-          isSelected: index == selectedIndex,
           item: item,
           onTap: () => onSelected(item),
         );
@@ -31,12 +28,10 @@ class SelectableItemListMenu extends StatelessWidget {
 class SelectableItem extends StatelessWidget {
   const SelectableItem({
     super.key,
-    required this.isSelected,
     required this.item,
     required this.onTap,
   });
 
-  final bool isSelected;
   final String item;
   final VoidCallback onTap;
 
