@@ -17,6 +17,8 @@ The goal of this project is to develop a Code Block in Flutter as a standalone p
 
 ## Features
 
+### Supported
+
 - [x] Syntax Highlighting
 - [x] Multiple Programming Language Support
 - [x] Copy All Code
@@ -24,6 +26,9 @@ The goal of this project is to develop a Code Block in Flutter as a standalone p
 - [x] Export code
 - [x] Import code
 - [x] Cool Dark and Light Theme
+
+### Future Scope
+
 - [ ] Copy the entire Code Block 
 - [ ] Line numbering
 - [ ] Auto-Indentation
@@ -113,3 +118,8 @@ AppFlowyEditor(
 
 Find out more about this here:
  https://appflowy.gitbook.io/docs/essential-documentation/contribute-to-appflowy/appflowy-mentorship-program/mentorship-2022/mentee-projects/code-block
+
+
+## Acknowledgements
+
+* https://github.com/git-touch/highlight.dart
