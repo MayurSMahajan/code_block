@@ -1,3 +1,5 @@
 ## 0.0.1
 
-* TODO: Describe initial release.
+* Initial version of the package
+* Add Codeblock to AppFlowy Editor apps
+

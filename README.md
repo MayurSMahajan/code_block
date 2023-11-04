@@ -30,16 +30,9 @@ The goal of this project is to develop a Code Block in Flutter as a standalone p
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-### Prerequisite
-
 To use this package you need a project with [AppFlowy Editor](https://github.com/AppFlowy-IO/appflowy-editor).
 
-### Steps
+## Usage
 
 1. Import the package:
 
