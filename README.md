@@ -13,11 +13,9 @@ and the Flutter guide for
 
 ## Our Goal
 
-
 The goal of this project is to develop a Code Block in Flutter as a standalone package that AppFlowy and other Flutter applications can use. Code Block is a feature that allows you to write and display code snippets.
 
 ## Features
-
 
 - [x] Syntax Highlighting
 - [x] Multiple Programming Language Support
@@ -25,6 +23,7 @@ The goal of this project is to develop a Code Block in Flutter as a standalone p
 - [x] Paste Multiple lines of code
 - [x] Export code
 - [x] Import code
+- [x] Cool Dark and Light Theme
 - [ ] Copy the entire Code Block 
 - [ ] Line numbering
 - [ ] Auto-Indentation
@@ -36,12 +35,86 @@ start using the package.
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+### Prerequisite
+
+To use this package you need a project with [AppFlowy Editor](https://github.com/AppFlowy-IO/appflowy-editor).
+
+### Steps
+
+1. Import the package:
 
 ```dart
-const like = 'sample';
+import 'package:code_block/code_block.dart';
 ```
+
+2. Add Codeblock item to Selection Menu Items of AppFlowyEditor:
+
+```dart
+late final List<SelectionMenuItem> slashMenuItems = [
+    ...standardSelectionMenuItems,
+    codeBlockItem,
+];
+```
+
+3. Add Codeblock shortcuts to AppFlowy Editor Shortcuts:
+
+```dart
+List<CharacterShortcutEvent> get characterShortcutEvents => [
+        // code block
+        ...codeBlockCharacterEvents,
+
+        // customize the slash menu command
+        customSlashCommand(
+          slashMenuItems,
+        ),
+
+        ...standardCharacterShortcutEvents
+          ..removeWhere(
+            (element) => element == slashCommand,
+          ), // remove the default slash command.
+      ];
+
+  final List<CommandShortcutEvent> commandShortcutEvents = [
+    ...codeBlockCommandEvents,
+    ...standardCommandShortcutEvents,
+  ];
+
+```
+
+> It is important that you customize the slash menu command, this way you will be able to add Codeblock Item to the Selection Menu Items.
+
+4. Add `CodeblockComponentBuilder` to AppFlowy Editor's Block Component Builder Map.
+
+```dart
+final customBlockComponentBuilderMap = {
+    CodeBlockKeys.type: CodeBlockComponentBuilder(
+      editorState: editorState,
+    ),
+  };
+
+  final builders = {
+    ...standardBlockComponentBuilderMap,
+    ...customBlockComponentBuilderMap,
+  };
+```
+
+5. Make sure you pass the shortcuts and blockComponentBuilderMap to AppFlowyEditor class.
+
+```dart
+// gets the block component builder map from a method
+blockComponentBuilders = customBlockComponentBuilderMap();
+
+AppFlowyEditor(
+      editorState: editorState,
+      autoFocus: true,
+      characterShortcutEvents: characterShortcutEvents,
+      commandShortcutEvents: commandShortcutEvents,
+      blockComponentBuilders: blockComponentBuilders,
+    );
+
+```
+
+6. That's it, check out your codeblock in action by pressing the slash menu in your editor page and selecting the Codeblock option.
 
 ## Additional information
 
