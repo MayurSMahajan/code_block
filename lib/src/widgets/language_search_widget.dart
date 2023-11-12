@@ -28,7 +28,7 @@ class _LanguageSearchWidgetState extends State<LanguageSearchWidget> {
   Widget build(BuildContext context) {
     return Container(
       width: 140,
-      height: 260,
+      height: 360,
       decoration: buildOverlayDecoration(context),
       padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
       child: Column(
@@ -49,7 +49,7 @@ class _LanguageSearchWidgetState extends State<LanguageSearchWidget> {
             ),
           ),
           SizedBox(
-            height: 200,
+            height: 300,
             child: ValueListenableBuilder(
               valueListenable: query,
               builder: (context, value, child) {
@@ -87,7 +87,7 @@ BoxDecoration buildOverlayDecoration(BuildContext context) {
     borderRadius: BorderRadius.circular(8),
     boxShadow: [
       BoxShadow(
-        color: Colors.grey.shade800,
+        color: Colors.grey.shade500,
         blurRadius: 10,
         offset: const Offset(0, 2),
       ),
