@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 class CodeBlockKeys {
   const CodeBlockKeys._();
 
+  /// The type of the node
+  ///
+  /// The value is a String.
   static const String type = 'code';
 
   /// The content of a code block.
@@ -17,6 +20,8 @@ class CodeBlockKeys {
   static const String language = 'language';
 }
 
+/// Returns a CodeBlock Node.
+///
 Node codeBlockNode({
   Delta? delta,
   String? language,
@@ -31,7 +36,7 @@ Node codeBlockNode({
   );
 }
 
-// defining the callout block menu item for selection
+/// defining the callout block menu item for selection
 SelectionMenuItem codeBlockItem = SelectionMenuItem.node(
   name: 'Code Block',
   iconData: Icons.keyboard,

@@ -1,5 +1,6 @@
 import 'package:highlight/languages/all.dart';
 
+/// List of all the supported languages in Codeblock
 final supportedLanguages = [
   'Assembly',
   'Bash',
@@ -48,6 +49,7 @@ final supportedLanguages = [
   'YAML',
 ];
 
+/// A filtered version of `supportedLanguages`
 final languages = supportedLanguages
     .map((e) => e.toLowerCase())
     .toSet()

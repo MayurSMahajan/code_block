@@ -4,6 +4,8 @@ import 'package:appflowy_code_block/src/widgets/selectable_item_list_menu.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
+/// This widget allows the user to search their favorite programming
+/// language among all the available langauges in the codeblock.
 class LanguageSearchWidget extends StatefulWidget {
   const LanguageSearchWidget({
     required this.actionsService,

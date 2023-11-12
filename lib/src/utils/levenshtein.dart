@@ -1,5 +1,7 @@
 import 'dart:math';
 
+/// An utility algorithm used for searching languages
+/// Credit: Alex Wallen
 int levenshtein(String s, String t, {bool caseSensitive = true}) {
   if (!caseSensitive) {
     s = s.toLowerCase();

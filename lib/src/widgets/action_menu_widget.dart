@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 
 import '../utils/file_handling/file_picker_impl.dart';
 
+/// Takes in the `ActionsService` and `EditorState` as parameter
+/// to present an interface to perform various operations with
+/// the Codeblock.
 class ActionMenuWidget extends StatelessWidget {
   const ActionMenuWidget({
     super.key,

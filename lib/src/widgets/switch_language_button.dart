@@ -3,6 +3,9 @@ import 'package:appflowy_code_block/src/service/actions_service.dart';
 import 'package:appflowy_code_block/src/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
+/// Widget that displays the current selected programming Language
+/// If clicked, it should open a list of all available programming languages
+/// supported by the codeblock.
 class SwitchLanguageButton extends StatelessWidget {
   const SwitchLanguageButton({
     super.key,

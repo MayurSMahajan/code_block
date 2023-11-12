@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+/// Default Dark Theme for the Codeblock
+///
+/// Copied from the `highlights` package
+/// https://github.com/git-touch/highlight.dart.
 const defaultLightTheme = {
   'root': TextStyle(
     backgroundColor: Color(0xfffbf1c7),

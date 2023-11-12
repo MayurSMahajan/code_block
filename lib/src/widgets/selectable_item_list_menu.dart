@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+/// A wrapper around ListView to show a list of all available
+/// programming langauges in Codeblock.
 class SelectableItemListMenu extends StatelessWidget {
   const SelectableItemListMenu({
     super.key,

@@ -1,6 +1,10 @@
 import 'package:appflowy_code_block/src/utils/themes/code_block_theme.dart';
 import 'package:flutter/material.dart';
 
+/// Default Dark Theme for the Codeblock
+///
+/// Copied from the `highlights` package
+/// https://github.com/git-touch/highlight.dart.
 const builtInCodeBlockTheme = CodeBlockTheme(
   root: TextStyle(
     backgroundColor: Color(0xffffffff),

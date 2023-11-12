@@ -1,11 +1,14 @@
 import 'package:appflowy_code_block/src/service/actions_service.dart';
-import 'package:appflowy_code_block/src/utils/themes/code_block_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_code_block/src/widgets/widgets.dart';
 import 'package:appflowy_code_block/src/utils/utils.dart';
 import 'package:highlight/highlight.dart' as highlight;
 
+/// `CodeBlockComponentWidget` is the widget responsible for painting the
+/// actual codeblock onto AppFlowy Editor. This is made possible because
+/// it implements `BlockComponentStatefulWidget` from AppFlowyEditor.
+///
 class CodeBlockComponentWidget extends BlockComponentStatefulWidget {
   const CodeBlockComponentWidget({
     super.key,
@@ -15,12 +18,12 @@ class CodeBlockComponentWidget extends BlockComponentStatefulWidget {
     super.configuration = const BlockComponentConfiguration(),
     this.padding = const EdgeInsets.all(0),
     required this.editorState,
-    this.theme = builtInCodeBlockTheme,
+    required this.style,
   });
 
   final EdgeInsets padding;
   final EditorState editorState;
-  final CodeBlockTheme theme;
+  final CodeBlockStyle style;
 
   @override
   State<CodeBlockComponentWidget> createState() =>
@@ -86,8 +89,7 @@ class _CodeBlockComponentWidgetState extends State<CodeBlockComponentWidget>
           },
           child: Container(
             decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(Radius.circular(5.0)),
-              color: Colors.grey.shade100,
+              color: widget.style.background,
             ),
             width: MediaQuery.of(context).size.width,
             child: Column(
@@ -129,8 +131,8 @@ class _CodeBlockComponentWidgetState extends State<CodeBlockComponentWidget>
     return Padding(
       padding: widget.padding,
       child: AppFlowyRichText(
-        delegate: this,
         key: forwardKey,
+        delegate: this,
         node: widget.node,
         editorState: editorState,
         placeholderText: placeholderText,
@@ -145,6 +147,8 @@ class _CodeBlockComponentWidgetState extends State<CodeBlockComponentWidget>
         placeholderTextSpanDecorator: (textSpan) => TextSpan(
           style: textStyle,
         ),
+        cursorColor: widget.style.cursorColor,
+        selectionColor: widget.style.selectionColor,
       ),
     );
   }

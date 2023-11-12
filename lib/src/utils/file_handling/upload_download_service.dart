@@ -5,6 +5,12 @@ import 'package:appflowy_code_block/src/utils/file_handling/file_picker_impl.dar
 import 'package:appflowy_code_block/src/utils/languages/extensions.dart';
 import 'package:file_picker/file_picker.dart';
 
+/// A service class responsible for facilitating downloading and uploading
+/// programs to codeblock.
+///
+/// Parameters:
+/// 1. `programFilePicker` a File Picker wrapper for IO operations.
+/// 2. `actionsService` for mutating the state of the Codeblock.
 class UploadDownloadService {
   UploadDownloadService({
     required this.programFilePicker,

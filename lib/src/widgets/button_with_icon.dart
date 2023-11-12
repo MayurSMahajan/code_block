@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+/// An utility widget to show an icon as trailing to a Text Button
+/// Used for showing the current selected language button.
 class ButtonWithTrailingIcon extends StatelessWidget {
   const ButtonWithTrailingIcon({
     required this.onTap,

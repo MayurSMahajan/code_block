@@ -1,3 +1,4 @@
+/// A list of all possible extensions
 List<String> allExtensions = [
   'abap',
   'asc',
@@ -351,6 +352,9 @@ List<String> allExtensions = [
   'vue'
 ];
 
+/// A Map of all the supported extensions with
+/// the key being the supported language and the
+/// value being the extension of that langauge.
 Map<String, String> supportedExtensions = {
   'assembly': 'asm',
   'basic': 'basic',
