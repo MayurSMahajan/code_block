@@ -12,8 +12,7 @@ dependencies:
 
   flutter_localizations:
     sdk: flutter
-  intl: any
-  appflowy_editor: ^1.5.1
+  appflowy_editor: ^1.5.2
   appflowy_code_block:
     path: ../
 

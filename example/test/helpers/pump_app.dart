@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 
 extension PumpApp on WidgetTester {
@@ -8,10 +8,12 @@ extension PumpApp on WidgetTester {
     return pumpWidget(
       MaterialApp(
         localizationsDelegates: const [
-          ...AppLocalizations.localizationsDelegates,
+          GlobalMaterialLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
           AppFlowyEditorLocalizations.delegate,
         ],
-        supportedLocales: AppLocalizations.supportedLocales,
+        supportedLocales: const [Locale('en', 'US')],
         home: Scaffold(body: widget),
       ),
     );
