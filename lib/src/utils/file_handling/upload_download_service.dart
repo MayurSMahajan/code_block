@@ -20,6 +20,11 @@ class UploadDownloadService {
   final ProgramFilePicker programFilePicker;
   final ActionsService actionsService;
 
+  /// Downloads the source code written inside the codeblock
+  /// and saves it in local storage.
+  /// Parameters:
+  /// `fileName`: string, if not empty this specifies the name of the
+  /// file which will be stored locally.
   Future<void> downloadProgram(String fileName) async {
     final extension = supportedExtensions[actionsService.language] ?? 'txt';
     final path = await programFilePicker.getDirectoryPath();
@@ -33,6 +38,8 @@ class UploadDownloadService {
     await file.writeAsString(content);
   }
 
+  /// Copies all the source code inside the Codeblock and creates a new
+  /// file in local storage with this code.
   Future<void> uploadProgram() async {
     final pickedFile = await programFilePicker.pickFiles(
       allowedExtensions: allExtensions,

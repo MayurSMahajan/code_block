@@ -1,5 +1,6 @@
 import 'package:file_picker/file_picker.dart';
 
+/// The result of Picked File or Files.
 class FilePickerResult {
   const FilePickerResult(this.files);
 

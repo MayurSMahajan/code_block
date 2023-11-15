@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_code_block/src/utils/code_block_node/code_block_node.dart';
 
+/// Collection of Navigation Shortcuts in Codeblock
 final List<CommandShortcutEvent> navigationShortcutsInCodeblock = [
   toStartInCodeblock,
   selectTillStartInCodeblock,

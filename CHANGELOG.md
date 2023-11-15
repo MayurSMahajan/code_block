@@ -8,3 +8,8 @@
 * First released version of the package
 * Customized to match style of AppFlowy
 * Increased documentation
+
+## 1.0.1
+
+* Increased documentation
+* Update dependencies

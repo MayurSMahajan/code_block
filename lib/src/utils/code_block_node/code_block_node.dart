@@ -1,6 +1,7 @@
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:flutter/material.dart';
 
+/// An utility class which stores the keys related to Codeblock.
 class CodeBlockKeys {
   const CodeBlockKeys._();
 
