@@ -1,10 +1,10 @@
 name: appflowy_code_block
 description: CodeBlock Component that provides a rich code block using AppFlowy Editor.
-version: 1.0.1
+version: 1.0.2
 homepage: https://github.com/MayurSMahajan/code_block
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
+  sdk: ">=3.1.5 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
