@@ -101,7 +101,7 @@ class _CodeBlockComponentWidgetState extends State<CodeBlockComponentWidget>
                         actionsService: actionsService,
                         editorState: editorState,
                       )
-                    : const SizedBox(height: 40),
+                    : const SizedBox(height: 36),
                 _buildCodeBlock(context),
               ],
             ),

@@ -1,3 +1,4 @@
+import 'package:appflowy_code_block/src/widgets/button_with_icon.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_code_block/src/service/actions_service.dart';
 import 'package:appflowy_code_block/src/utils/file_handling/upload_download_service.dart';
@@ -61,34 +62,30 @@ class _ActionsContainerState extends State<ActionsContainer> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const SizedBox(width: 12),
-        IconButton(
-          onPressed: copyAllCode,
+        ButtonWithTrailingIcon(
+          onTap: copyAllCode,
           icon: const Icon(
             Icons.copy_rounded,
-            size: 20,
+            size: 16,
           ),
-          tooltip: "Copy All",
+          text: "Copy ",
         ),
-        const SizedBox(width: 12),
-        IconButton(
-          onPressed: downloadCode,
+        ButtonWithTrailingIcon(
+          onTap: downloadCode,
           icon: const Icon(
             Icons.download_outlined,
-            size: 20,
+            size: 16,
           ),
-          tooltip: "Download Code",
+          text: "Download ",
         ),
-        const SizedBox(width: 12),
-        IconButton(
-          onPressed: uploadCode,
+        ButtonWithTrailingIcon(
+          onTap: uploadCode,
           icon: const Icon(
             Icons.upload_file,
-            size: 20,
+            size: 16,
           ),
-          tooltip: "Import Code",
+          text: "Import Code ",
         ),
-        const SizedBox(width: 12),
       ],
     );
   }
