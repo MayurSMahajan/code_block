@@ -38,8 +38,8 @@ class UploadDownloadService {
     await file.writeAsString(content);
   }
 
-  /// Copies all the source code inside the Codeblock and creates a new
-  /// file in local storage with this code.
+  /// Copies all the source code inside the Codeblock from a file.
+  /// Used when Importing Code into Codeblock from local files.
   Future<void> uploadProgram() async {
     final pickedFile = await programFilePicker.pickFiles(
       allowedExtensions: allExtensions,

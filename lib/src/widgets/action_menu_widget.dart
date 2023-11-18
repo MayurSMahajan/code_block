@@ -1,7 +1,6 @@
 import 'package:appflowy_code_block/src/widgets/button_with_icon.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:appflowy_code_block/src/service/actions_service.dart';
-import 'package:appflowy_code_block/src/utils/file_handling/upload_download_service.dart';
+import 'package:appflowy_code_block/src/service/services.dart';
 import 'package:appflowy_code_block/src/widgets/switch_language_button.dart';
 import 'package:flutter/material.dart';
 
