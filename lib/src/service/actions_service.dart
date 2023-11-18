@@ -51,6 +51,7 @@ class ActionsService {
         node,
         {
           CodeBlockKeys.delta: newDelta.toJson(),
+          CodeBlockKeys.language: null,
         },
       );
     await editorState.apply(transaction);
