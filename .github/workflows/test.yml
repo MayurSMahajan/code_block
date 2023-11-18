@@ -12,9 +12,6 @@ on:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
-
-env:
-  FLUTTER_VERSION: "3.13.9"
   
 jobs:
   desktop:
@@ -34,12 +31,20 @@ jobs:
 
       - name: Run tests
         run: |
+          flutter --version
           flutter pub get
           flutter analyze .
           dart format --set-exit-if-changed .
           flutter test --coverage
 
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v3
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      - name: Upload coverage to Codecov
+        uses: Wandalen/wretry.action@v1.0.36
+        with:
+          action: codecov/codecov-action@v3
+          with: |
+            fail_ci_if_error: true
+            verbose: true
+            os: ${{ matrix.os }}
+            token: ${{ secrets.CODECOV_TOKEN }}
+          attempt_limit: 10
+          attempt_delay: 10000
