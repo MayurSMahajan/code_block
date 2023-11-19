@@ -23,7 +23,10 @@ class MyApp extends StatelessWidget {
       ],
       supportedLocales: const [Locale('en', 'US')],
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.purple,
+          brightness: Brightness.dark,
+        ),
         useMaterial3: true,
       ),
       home: const HomePage(),

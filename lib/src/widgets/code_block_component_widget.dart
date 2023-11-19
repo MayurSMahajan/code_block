@@ -52,8 +52,6 @@ class _CodeBlockComponentWidgetState extends State<CodeBlockComponentWidget>
   @override
   Node get node => widget.node;
 
-  // final popoverController = PopoverController();
-
   late final ActionsService actionsService;
 
   @override
@@ -114,7 +112,7 @@ class _CodeBlockComponentWidgetState extends State<CodeBlockComponentWidget>
                           actionsService: actionsService,
                           editorState: editorState,
                         )
-                      : const SizedBox(height: 36),
+                      : const SizedBox(height: 34),
                   _buildCodeBlock(context),
                 ],
               ),
@@ -152,7 +150,11 @@ class _CodeBlockComponentWidgetState extends State<CodeBlockComponentWidget>
         placeholderText: placeholderText,
         lineHeight: 1.5,
         textSpanDecorator: (textSpan) => TextSpan(
-          style: textStyle,
+          style: textStyle.copyWith(
+            color: isLightMode
+                ? CodeBlockStyle.darkForeground
+                : CodeBlockStyle.lightForeground,
+          ),
           children: codeTextSpans,
         ),
         placeholderTextSpanDecorator: (textSpan) => TextSpan(

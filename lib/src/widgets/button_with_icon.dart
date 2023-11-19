@@ -24,7 +24,7 @@ class _ButtonWithTrailingIconState extends State<ButtonWithTrailingIcon> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+      padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 6),
       child: InkWell(
         onTap: widget.onTap,
         onHover: (hoverState) => setState(
@@ -40,9 +40,9 @@ class _ButtonWithTrailingIconState extends State<ButtonWithTrailingIcon> {
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 4),
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(widget.text),
+                Text(widget.text, style: Theme.of(context).textTheme.bodySmall),
                 widget.icon,
               ],
             ),

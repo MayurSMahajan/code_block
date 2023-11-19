@@ -38,7 +38,7 @@ class SwitchLanguageButton extends StatelessWidget {
       text: actionsService.language ?? 'auto',
       icon: const Icon(
         Icons.expand_more,
-        size: 16,
+        size: 20,
       ),
     );
   }

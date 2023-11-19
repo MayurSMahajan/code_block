@@ -43,7 +43,7 @@ class SelectableItem extends StatelessWidget {
       height: 40,
       child: TextButton(
         onPressed: onTap,
-        child: Text(item),
+        child: Text(item, style: Theme.of(context).textTheme.bodyMedium),
       ),
     );
   }

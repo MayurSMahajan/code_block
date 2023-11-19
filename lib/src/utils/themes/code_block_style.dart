@@ -7,4 +7,6 @@ import 'package:flutter/material.dart';
 class CodeBlockStyle {
   static Color lightBackground = const Color.fromRGBO(245, 245, 245, 1);
   static Color darkBackground = const Color.fromARGB(53, 46, 58, 62);
+  static Color lightForeground = Colors.grey.shade300;
+  static Color darkForeground = Colors.grey.shade900;
 }
