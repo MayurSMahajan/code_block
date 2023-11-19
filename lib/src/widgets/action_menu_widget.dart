@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:appflowy_code_block/src/widgets/button_with_icon.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_code_block/src/service/services.dart';
@@ -88,7 +87,7 @@ class _ActionsContainerState extends State<ActionsContainer> {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: _isPlatformMobile ? [actions.first] : actions,
+      children: PlatformExtension.isMobile ? [actions.first] : actions,
     );
   }
 
@@ -104,6 +103,4 @@ class _ActionsContainerState extends State<ActionsContainer> {
   Future<void> uploadCode() async {
     await uploadDownloadService.uploadProgram();
   }
-
-  bool get _isPlatformMobile => Platform.isAndroid || Platform.isIOS;
 }

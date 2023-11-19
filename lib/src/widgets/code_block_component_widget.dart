@@ -4,7 +4,6 @@ import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_code_block/src/widgets/widgets.dart';
 import 'package:appflowy_code_block/src/utils/utils.dart';
 import 'package:highlight/highlight.dart' as highlight;
-import 'dart:io';
 
 /// `CodeBlockComponentWidget` is the widget responsible for painting the
 /// actual codeblock onto AppFlowy Editor. This is made possible because
@@ -72,7 +71,7 @@ class _CodeBlockComponentWidgetState extends State<CodeBlockComponentWidget>
     super.initState();
     actionsService = ActionsService(editorState: editorState, node: node);
     setState(() {
-      showActions = _isPlatformMobile();
+      showActions = PlatformExtension.isMobile;
     });
   }
 
@@ -213,9 +212,5 @@ class _CodeBlockComponentWidgetState extends State<CodeBlockComponentWidget>
     }
 
     return spans;
-  }
-
-  bool _isPlatformMobile() {
-    return Platform.isAndroid || Platform.isIOS;
   }
 }
