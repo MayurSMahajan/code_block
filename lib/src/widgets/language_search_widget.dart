@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:appflowy_code_block/src/service/actions_service.dart';
 import 'package:appflowy_code_block/src/utils/utils.dart';
 import 'package:appflowy_code_block/src/widgets/selectable_item_list_menu.dart';
@@ -26,58 +28,61 @@ class _LanguageSearchWidgetState extends State<LanguageSearchWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 140,
-      height: 360,
-      decoration: buildOverlayDecoration(context),
-      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
-      child: Column(
-        children: [
-          SizedBox(
-            height: 40,
-            child: TextField(
-              onChanged: (value) => setState(() {
-                query.value = value;
-              }),
-              onSubmitted: (value) {
-                if (query.value.isNotEmpty) {
-                  widget.actionsService.updateLanguage(langs.first);
+    final child = Column(
+      children: [
+        SizedBox(
+          height: 36,
+          child: TextField(
+            onChanged: (value) => setState(() {
+              query.value = value;
+            }),
+            onSubmitted: (value) {
+              if (query.value.isNotEmpty) {
+                widget.actionsService.updateLanguage(langs.first);
+                widget.dismissCall();
+              }
+            },
+            decoration: buildInputDecoration(context),
+          ),
+        ),
+        SizedBox(
+          height: 300,
+          child: ValueListenableBuilder(
+            valueListenable: query,
+            builder: (context, value, child) {
+              if (value.isNotEmpty) {
+                langs = langs
+                    .where(
+                      (lang) => lang
+                          .toLowerCase()
+                          .contains(value.toLowerCase().toString()),
+                    )
+                    .sorted((a, b) => levenshtein(a, b))
+                    .toList();
+              } else {
+                langs = languages;
+              }
+              return SelectableItemListMenu(
+                items: langs,
+                onSelected: (value) {
+                  widget.actionsService.updateLanguage(value);
                   widget.dismissCall();
-                }
-              },
-              decoration: buildInputDecoration(context),
-            ),
+                },
+              );
+            },
           ),
-          SizedBox(
-            height: 300,
-            child: ValueListenableBuilder(
-              valueListenable: query,
-              builder: (context, value, child) {
-                if (value.isNotEmpty) {
-                  langs = langs
-                      .where(
-                        (lang) => lang
-                            .toLowerCase()
-                            .contains(value.toLowerCase().toString()),
-                      )
-                      .sorted((a, b) => levenshtein(a, b))
-                      .toList();
-                } else {
-                  langs = languages;
-                }
-                return SelectableItemListMenu(
-                  items: langs,
-                  onSelected: (value) {
-                    widget.actionsService.updateLanguage(value);
-                    widget.dismissCall();
-                  },
-                );
-              },
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
+
+    return (Platform.isAndroid || Platform.isIOS)
+        ? child
+        : Container(
+            width: 140,
+            decoration: buildOverlayDecoration(context),
+            padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+            child: child,
+          );
   }
 }
 

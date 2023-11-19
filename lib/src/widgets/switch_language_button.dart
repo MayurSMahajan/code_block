@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_code_block/src/service/actions_service.dart';
 import 'package:appflowy_code_block/src/widgets/widgets.dart';
@@ -19,11 +21,22 @@ class SwitchLanguageButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ButtonWithTrailingIcon(
-      onTap: () => showActionMenu(
-        context: context,
-        editorState: editorState,
-        actionsService: actionsService,
-      ),
+      onTap: () {
+        if (Platform.isAndroid || Platform.isIOS) {
+          // show bottom modal sheet with Language selection widget.
+          showFlowyMobileBottomSheet(
+            context,
+            title: 'Select Language',
+            actionsService: actionsService,
+          );
+        } else {
+          return showActionMenu(
+            context: context,
+            editorState: editorState,
+            actionsService: actionsService,
+          );
+        }
+      },
       text: actionsService.language ?? 'auto',
       icon: const Icon(
         Icons.expand_more,
@@ -88,4 +101,62 @@ class SwitchLanguageButton extends StatelessWidget {
   }
 
   return (top, bottom, left);
+}
+
+Future<T?> showFlowyMobileBottomSheet<T>(
+  BuildContext context, {
+  required String title,
+  required ActionsService actionsService,
+}) async {
+  return showModalBottomSheet(
+    context: context,
+    isScrollControlled: true,
+    builder: (context) => Padding(
+      padding: const EdgeInsets.fromLTRB(16, 16, 16, 32),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          _BottomSheetTitle(title),
+          const SizedBox(
+            height: 16,
+          ),
+          LanguageSearchWidget(
+            actionsService: actionsService,
+            dismissCall: () {
+              Navigator.pop(context);
+            },
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+class _BottomSheetTitle extends StatelessWidget {
+  const _BottomSheetTitle(this.title);
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          title,
+          style: theme.textTheme.labelSmall,
+        ),
+        IconButton(
+          icon: Icon(
+            Icons.close,
+            color: theme.hintColor,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ],
+    );
+  }
 }

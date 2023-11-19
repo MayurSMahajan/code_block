@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:appflowy_code_block/src/widgets/button_with_icon.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_code_block/src/service/services.dart';
@@ -48,19 +49,7 @@ class _ActionsContainerState extends State<ActionsContainer> {
   final programFilePicker = ProgramFilePicker();
   late UploadDownloadService uploadDownloadService;
 
-  @override
-  void initState() {
-    super.initState();
-    uploadDownloadService = UploadDownloadService(
-      programFilePicker: programFilePicker,
-      actionsService: widget.actionsService,
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
+  List<Widget> get actions => [
         ButtonWithTrailingIcon(
           onTap: copyAllCode,
           icon: const Icon(
@@ -85,7 +74,21 @@ class _ActionsContainerState extends State<ActionsContainer> {
           ),
           text: "Import Code ",
         ),
-      ],
+      ];
+
+  @override
+  void initState() {
+    super.initState();
+    uploadDownloadService = UploadDownloadService(
+      programFilePicker: programFilePicker,
+      actionsService: widget.actionsService,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: _isPlatformMobile ? [actions.first] : actions,
     );
   }
 
@@ -101,4 +104,6 @@ class _ActionsContainerState extends State<ActionsContainer> {
   Future<void> uploadCode() async {
     await uploadDownloadService.uploadProgram();
   }
+
+  bool get _isPlatformMobile => Platform.isAndroid || Platform.isIOS;
 }

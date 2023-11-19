@@ -40,7 +40,7 @@ class SelectableItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 32,
+      height: 40,
       child: TextButton(
         onPressed: onTap,
         child: Text(item),

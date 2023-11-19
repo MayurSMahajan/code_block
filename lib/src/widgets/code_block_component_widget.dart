@@ -4,6 +4,7 @@ import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_code_block/src/widgets/widgets.dart';
 import 'package:appflowy_code_block/src/utils/utils.dart';
 import 'package:highlight/highlight.dart' as highlight;
+import 'dart:io';
 
 /// `CodeBlockComponentWidget` is the widget responsible for painting the
 /// actual codeblock onto AppFlowy Editor. This is made possible because
@@ -70,40 +71,52 @@ class _CodeBlockComponentWidgetState extends State<CodeBlockComponentWidget>
   void initState() {
     super.initState();
     actionsService = ActionsService(editorState: editorState, node: node);
+    setState(() {
+      showActions = _isPlatformMobile();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlockComponentActionWrapper(
-      node: widget.node,
-      actionBuilder: widget.actionBuilder!,
-      child: Padding(
-        key: blockComponentKey,
-        padding: padding,
-        child: InkWell(
-          onTap: () {},
-          onHover: (hover) {
-            setState(() {
-              showActions = hover;
-            });
-          },
-          child: Container(
-            decoration: BoxDecoration(
-              color: widget.style.background,
-            ),
-            width: MediaQuery.of(context).size.width,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                showActions
-                    ? ActionMenuWidget(
-                        actionsService: actionsService,
-                        editorState: editorState,
-                      )
-                    : const SizedBox(height: 36),
-                _buildCodeBlock(context),
-              ],
+    return BlockSelectionContainer(
+      node: node,
+      delegate: this,
+      listenable: editorState.selectionNotifier,
+      blockColor: editorState.editorStyle.selectionColor,
+      supportTypes: const [
+        BlockSelectionType.block,
+      ],
+      child: BlockComponentActionWrapper(
+        node: widget.node,
+        actionBuilder: widget.actionBuilder!,
+        child: Padding(
+          key: blockComponentKey,
+          padding: padding,
+          child: InkWell(
+            onTap: () {},
+            onHover: (hover) {
+              setState(() {
+                showActions = hover;
+              });
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                color: widget.style.background,
+              ),
+              width: MediaQuery.of(context).size.width,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  showActions
+                      ? ActionMenuWidget(
+                          actionsService: actionsService,
+                          editorState: editorState,
+                        )
+                      : const SizedBox(height: 36),
+                  _buildCodeBlock(context),
+                ],
+              ),
             ),
           ),
         ),
@@ -200,5 +213,9 @@ class _CodeBlockComponentWidgetState extends State<CodeBlockComponentWidget>
     }
 
     return spans;
+  }
+
+  bool _isPlatformMobile() {
+    return Platform.isAndroid || Platform.isIOS;
   }
 }
