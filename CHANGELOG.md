@@ -20,3 +20,9 @@
 * Imported Code now has Auto Langauge as default
 * Moved the UploadDownloadService class into Service dir.
 * Increased the SDK min requirement
+
+## 1.1.0
+
+* Adaptive on Mobile
+* Adaptive for Light and Dark Mode
+* Updated GitHub Actions
