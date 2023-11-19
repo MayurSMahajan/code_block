@@ -5,13 +5,6 @@ import 'package:flutter/material.dart';
 /// theme.
 ///
 class CodeBlockStyle {
-  const CodeBlockStyle({
-    this.background = const Color.fromRGBO(245, 245, 245, 1),
-    this.cursorColor = const Color.fromARGB(255, 0, 0, 0),
-    this.selectionColor = const Color.fromARGB(53, 111, 201, 231),
-  });
-
-  final Color background;
-  final Color cursorColor;
-  final Color selectionColor;
+  static Color lightBackground = const Color.fromRGBO(245, 245, 245, 1);
+  static Color darkBackground = const Color.fromARGB(53, 46, 58, 62);
 }

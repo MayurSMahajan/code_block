@@ -18,12 +18,10 @@ class CodeBlockComponentWidget extends BlockComponentStatefulWidget {
     super.configuration = const BlockComponentConfiguration(),
     this.padding = const EdgeInsets.all(0),
     required this.editorState,
-    required this.style,
   });
 
   final EdgeInsets padding;
   final EditorState editorState;
-  final CodeBlockStyle style;
 
   @override
   State<CodeBlockComponentWidget> createState() =>
@@ -77,6 +75,8 @@ class _CodeBlockComponentWidgetState extends State<CodeBlockComponentWidget>
 
   @override
   Widget build(BuildContext context) {
+    final isLightMode = Theme.of(context).brightness == Brightness.light;
+
     return BlockSelectionContainer(
       node: node,
       delegate: this,
@@ -100,7 +100,9 @@ class _CodeBlockComponentWidgetState extends State<CodeBlockComponentWidget>
             },
             child: Container(
               decoration: BoxDecoration(
-                color: widget.style.background,
+                color: isLightMode
+                    ? CodeBlockStyle.lightBackground
+                    : CodeBlockStyle.darkBackground,
               ),
               width: MediaQuery.of(context).size.width,
               child: Column(
@@ -150,17 +152,12 @@ class _CodeBlockComponentWidgetState extends State<CodeBlockComponentWidget>
         placeholderText: placeholderText,
         lineHeight: 1.5,
         textSpanDecorator: (textSpan) => TextSpan(
-          style: textStyle.copyWith(
-            height: 1.5,
-            color: Colors.black,
-          ),
+          style: textStyle,
           children: codeTextSpans,
         ),
         placeholderTextSpanDecorator: (textSpan) => TextSpan(
           style: textStyle,
         ),
-        cursorColor: widget.style.cursorColor,
-        selectionColor: widget.style.selectionColor,
       ),
     );
   }

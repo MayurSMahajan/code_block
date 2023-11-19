@@ -1,4 +1,3 @@
-import 'package:appflowy_code_block/src/utils/themes/code_block_style.dart';
 import 'package:flutter/material.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_code_block/src/widgets/widgets.dart';
@@ -24,12 +23,10 @@ class CodeBlockComponentBuilder extends BlockComponentBuilder {
     super.configuration,
     this.padding = const EdgeInsets.all(0),
     required this.editorState,
-    this.codeblockStyle = const CodeBlockStyle(),
   });
 
   final EdgeInsets padding;
   final EditorState editorState;
-  final CodeBlockStyle codeblockStyle;
 
   @override
   BlockComponentWidget build(BlockComponentContext blockComponentContext) {
@@ -40,7 +37,6 @@ class CodeBlockComponentBuilder extends BlockComponentBuilder {
       node: node,
       configuration: configuration,
       padding: padding,
-      style: codeblockStyle,
       showActions: showActions(node),
       actionBuilder: (context, state) => actionBuilder(
         blockComponentContext,
