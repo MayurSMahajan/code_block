@@ -1,3 +1,4 @@
+export 'action_menu_item.dart';
 export 'action_menu_widget.dart';
 export 'button_with_icon.dart';
 export 'code_block_component_widget.dart';

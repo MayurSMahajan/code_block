@@ -1,7 +1,6 @@
-import 'package:appflowy_code_block/src/widgets/button_with_icon.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_code_block/src/service/services.dart';
-import 'package:appflowy_code_block/src/widgets/switch_language_button.dart';
+import 'package:appflowy_code_block/src/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/file_handling/file_picker_impl.dart';
@@ -52,7 +51,7 @@ class _ActionsContainerState extends State<ActionsContainer> {
   late UploadDownloadService uploadDownloadService;
 
   List<Widget> get actions => [
-        ButtonWithTrailingIcon(
+        ActionMenuIconBtn(
           onTap: copyAllCode,
           icon: const Icon(
             Icons.copy_rounded,
@@ -60,7 +59,7 @@ class _ActionsContainerState extends State<ActionsContainer> {
           ),
           text: "Copy ",
         ),
-        ButtonWithTrailingIcon(
+        ActionMenuIconBtn(
           onTap: downloadCode,
           icon: const Icon(
             Icons.download_outlined,
@@ -68,7 +67,7 @@ class _ActionsContainerState extends State<ActionsContainer> {
           ),
           text: "Download ",
         ),
-        ButtonWithTrailingIcon(
+        ActionMenuIconBtn(
           onTap: uploadCode,
           icon: const Icon(
             Icons.upload_file,
@@ -89,8 +88,14 @@ class _ActionsContainerState extends State<ActionsContainer> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: PlatformExtension.isMobile ? [actions.first] : actions,
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 4),
+      decoration: BoxDecoration(
+          color: Theme.of(context).cardColor,
+          borderRadius: BorderRadiusDirectional.circular(5)),
+      child: Row(
+        children: PlatformExtension.isMobile ? [actions.first] : actions,
+      ),
     );
   }
 
