@@ -9,6 +9,7 @@ import 'package:appflowy_code_block/src/utils/code_block_node/code_block_node.da
 ///   - web
 final CommandShortcutEvent pasteInCodeblock = CommandShortcutEvent(
   key: 'paste in codeblock',
+  getDescription: () => 'paste in codeblock',
   command: 'ctrl+v',
   macOSCommand: 'cmd+v',
   handler: _pasteInCodeBlock,

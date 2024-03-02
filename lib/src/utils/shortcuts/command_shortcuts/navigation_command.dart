@@ -17,6 +17,7 @@ final List<CommandShortcutEvent> navigationShortcutsInCodeblock = [
 ///   - web
 final CommandShortcutEvent toStartInCodeblock = CommandShortcutEvent(
   key: 'navigating to the start of line',
+  getDescription: () => 'navigating to the start of line',
   command: 'home',
   macOSCommand: 'cmd+arrow left',
   handler: _navigateToStartInCodeBlock,
@@ -57,6 +58,7 @@ CommandShortcutEventHandler _navigateToStartInCodeBlock = (editorState) {
 
 final CommandShortcutEvent selectTillStartInCodeblock = CommandShortcutEvent(
   key: 'selecting till start of line in codeblock',
+  getDescription: () => 'selecting till start of line in codeblock',
   command: 'shift+home',
   macOSCommand: 'shift+cmd+arrow left',
   handler: _goAndSelectTillStart,
@@ -98,6 +100,7 @@ CommandShortcutEventHandler _goAndSelectTillStart = (editorState) {
 
 final CommandShortcutEvent toEndInCodeblock = CommandShortcutEvent(
   key: 'navigating to the end in Codeblock',
+  getDescription: () => 'navigating to the end in Codeblock',
   command: 'end',
   macOSCommand: 'cmd+arrow right',
   handler: _goToEndInCodeBlock,
@@ -144,6 +147,7 @@ CommandShortcutEventHandler _goToEndInCodeBlock = (editorState) {
 
 final CommandShortcutEvent selectTillEndInCodeblock = CommandShortcutEvent(
   key: 'select till end in codeblock',
+  getDescription: () => 'select till end in codeblock',
   command: 'shift+end',
   macOSCommand: 'shift+cmd+arrow right',
   handler: _goAndSelectTillEnd,
