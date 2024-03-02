@@ -39,7 +39,7 @@ Node codeBlockNode({
 
 /// defining the callout block menu item for selection
 SelectionMenuItem codeBlockItem = SelectionMenuItem.node(
-  name: () => 'Code Block',
+  getName: () => 'Code Block',
   iconData: Icons.keyboard,
   keywords: ['code', 'codeblock'],
   nodeBuilder: (editorState, _) => codeBlockNode(),
