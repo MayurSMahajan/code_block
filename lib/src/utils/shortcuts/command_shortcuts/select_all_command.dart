@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 ///   - web
 final CommandShortcutEvent selectAllInCodeBlockCommand = CommandShortcutEvent(
   key: 'ctrl + a to select all content inside a code block',
+  getDescription: () => 'ctrl + a to select all content inside a code block',
   command: 'ctrl+a',
   macOSCommand: 'meta+a',
   handler: _selectAllInCodeBlockCommandHandler,

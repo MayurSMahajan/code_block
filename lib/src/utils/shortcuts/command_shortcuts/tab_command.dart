@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 final CommandShortcutEvent tabToInsertSpacesInCodeBlockCommand =
     CommandShortcutEvent(
   key: 'tab to insert two spaces at the line start in code block',
+  getDescription: () => 'tab to insert two spaces at the line start in code block',
   command: 'tab',
   handler: _tabToInsertSpacesInCodeBlockCommandHandler,
 );
@@ -57,6 +58,7 @@ CommandShortcutEventHandler _tabToInsertSpacesInCodeBlockCommandHandler =
 final CommandShortcutEvent tabToDeleteSpacesInCodeBlockCommand =
     CommandShortcutEvent(
   key: 'shift + tab to delete two spaces at the line start in code block',
+  getDescription: () => 'shift + tab to delete two spaces at the line start in code block',
   command: 'shift+tab',
   handler: _tabToDeleteSpacesInCodeBlockCommandHandler,
 );

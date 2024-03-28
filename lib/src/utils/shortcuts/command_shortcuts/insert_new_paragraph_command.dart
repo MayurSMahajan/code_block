@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 final CommandShortcutEvent insertNewParagraphNextToCodeBlockCommand =
     CommandShortcutEvent(
   key: 'insert a new paragraph next to the code block',
+  getDescription: () => 'insert a new paragraph next to the code block',
   command: 'shift+enter',
   handler: _insertNewParagraphNextToCodeBlockCommandHandler,
 );
