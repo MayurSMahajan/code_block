@@ -1,6 +1,8 @@
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:flutter/material.dart';
 
+const kCodeBlockName = "Code Block";
+
 /// An utility class which stores the keys related to Codeblock.
 class CodeBlockKeys {
   const CodeBlockKeys._();
@@ -37,10 +39,10 @@ Node codeBlockNode({
   );
 }
 
-/// defining the callout block menu item for selection
+/// defining the codeblock block menu item for selection
 SelectionMenuItem codeBlockItem = SelectionMenuItem.node(
-  getName: () => 'Code Block',
-  iconData: Icons.keyboard,
+  getName: () => kCodeBlockName,
+  iconData: Icons.abc,
   keywords: ['code', 'codeblock'],
   nodeBuilder: (editorState, _) => codeBlockNode(),
   replace: (_, node) => node.delta?.isEmpty ?? false,

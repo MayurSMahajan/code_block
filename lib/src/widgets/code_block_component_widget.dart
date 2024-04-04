@@ -98,6 +98,7 @@ class _CodeBlockComponentWidgetState extends State<CodeBlockComponentWidget>
             },
             child: Container(
               decoration: BoxDecoration(
+                borderRadius: const BorderRadius.all(Radius.circular(8.0)),
                 color: isLightMode
                     ? CodeBlockStyle.lightBackground
                     : CodeBlockStyle.darkBackground,

@@ -2,7 +2,7 @@
 *.class
 *.log
 *.pyc
-*.swp
+*.swp   
 .DS_Store
 .atom/
 .buildlog/
@@ -28,3 +28,5 @@ migrate_working_dir/
 .dart_tool/
 .packages
 build/
+*.flutter-plugins
+*.flutter-plugins-dependencies

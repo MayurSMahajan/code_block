@@ -24,7 +24,7 @@ class _ActionMenuIconBtnState extends State<ActionMenuIconBtn> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 6),
+      padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
       child: InkWell(
         onTap: widget.onTap,
         onHover: (hoverState) => setState(

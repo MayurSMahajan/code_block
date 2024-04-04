@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: const [Locale('en', 'US')],
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.purple,
+          seedColor: Colors.orange,
           brightness: Brightness.light,
         ),
         useMaterial3: true,
