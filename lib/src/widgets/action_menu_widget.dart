@@ -91,7 +91,7 @@ class _ActionsContainerState extends State<ActionsContainer> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 4),
       decoration: BoxDecoration(
-          color: Theme.of(context).cardColor,
+          color: Theme.of(context).hoverColor,
           borderRadius: BorderRadiusDirectional.circular(5)),
       child: Row(
         children: PlatformExtension.isMobile ? [actions.first] : actions,

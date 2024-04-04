@@ -86,37 +86,44 @@ class _CodeBlockComponentWidgetState extends State<CodeBlockComponentWidget>
       child: BlockComponentActionWrapper(
         node: widget.node,
         actionBuilder: widget.actionBuilder!,
-        child: Padding(
-          key: blockComponentKey,
-          padding: padding,
-          child: InkWell(
-            onTap: () {},
-            onHover: (hover) {
-              setState(() {
-                showActions = hover;
-              });
-            },
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(8.0)),
-                color: isLightMode
-                    ? CodeBlockStyle.lightBackground
-                    : CodeBlockStyle.darkBackground,
-              ),
-              width: MediaQuery.of(context).size.width,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  showActions
-                      ? ActionMenuWidget(
+        child: MouseRegion(
+          onEnter: (_) {
+            setState(() {
+              showActions = true;
+            });
+          },
+          onExit: (_) {
+            setState(() {
+              showActions = false;
+            });
+          },
+          hitTestBehavior: HitTestBehavior.opaque,
+          opaque: false,
+          child: Container(
+            padding: padding,
+            key: blockComponentKey,
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+              color: isLightMode
+                  ? CodeBlockStyle.lightBackground
+                  : CodeBlockStyle.darkBackground,
+            ),
+            width: MediaQuery.of(context).size.width,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                showActions
+                    ? Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                        child: ActionMenuWidget(
                           actionsService: actionsService,
                           editorState: editorState,
-                        )
-                      : const SizedBox(height: 34),
-                  _buildCodeBlock(context),
-                ],
-              ),
+                        ),
+                      )
+                    : const SizedBox(height: 34),
+                _buildCodeBlock(context),
+              ],
             ),
           ),
         ),

@@ -25,26 +25,37 @@ class _ButtonWithTrailingIconState extends State<ButtonWithTrailingIcon> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 6),
-      child: InkWell(
-        onTap: widget.onTap,
-        onHover: (hoverState) => setState(
-          () => isHovered = hoverState,
-        ),
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 100),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
-            color:
-                isHovered ? Theme.of(context).hoverColor : Colors.transparent,
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 4),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(widget.text, style: Theme.of(context).textTheme.bodySmall),
-                widget.icon,
-              ],
+      child: MouseRegion(
+        onEnter: (_) {
+          setState(() {
+            isHovered = true;
+          });
+        },
+        onExit: (_) {
+          setState(() {
+            isHovered = false;
+          });
+        },
+        hitTestBehavior: HitTestBehavior.opaque,
+        child: GestureDetector(
+          onTap: widget.onTap,
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 100),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+              color:
+                  isHovered ? Theme.of(context).hoverColor : Colors.transparent,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 4),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(widget.text,
+                      style: Theme.of(context).textTheme.bodySmall),
+                  widget.icon,
+                ],
+              ),
             ),
           ),
         ),
