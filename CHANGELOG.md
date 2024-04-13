@@ -26,3 +26,9 @@
 * Adaptive on Mobile
 * Adaptive for Light and Dark Mode
 * Updated GitHub Actions
+
+## 1.1.1
+
+* Update Hover style
+* Minor animation
+* Update dependencies
