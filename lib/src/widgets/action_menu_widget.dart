@@ -53,25 +53,28 @@ class _ActionsContainerState extends State<ActionsContainer> {
   List<Widget> get actions => [
         ActionMenuIconBtn(
           onTap: copyAllCode,
-          icon: const Icon(
+          icon: Icon(
             Icons.copy_rounded,
-            size: 16,
+            size: 20,
+            color: Theme.of(context).iconTheme.color,
           ),
           text: "Copy ",
         ),
         ActionMenuIconBtn(
           onTap: downloadCode,
-          icon: const Icon(
+          icon: Icon(
             Icons.download_outlined,
-            size: 16,
+            size: 20,
+            color: Theme.of(context).iconTheme.color,
           ),
           text: "Download ",
         ),
         ActionMenuIconBtn(
           onTap: uploadCode,
-          icon: const Icon(
+          icon: Icon(
             Icons.upload_file,
-            size: 16,
+            size: 20,
+            color: Theme.of(context).iconTheme.color,
           ),
           text: "Import Code ",
         ),
@@ -89,10 +92,9 @@ class _ActionsContainerState extends State<ActionsContainer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 4),
-      decoration: BoxDecoration(
-          color: Theme.of(context).hoverColor,
-          borderRadius: BorderRadiusDirectional.circular(5)),
+      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+      decoration:
+          BoxDecoration(borderRadius: BorderRadiusDirectional.circular(5)),
       child: Row(
         children: PlatformExtension.isMobile ? [actions.first] : actions,
       ),

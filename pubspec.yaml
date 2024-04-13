@@ -9,13 +9,12 @@ environment:
 
 dependencies:
   appflowy_editor: ^2.3.3
-  collection: ^1.18.0
+  collection: ^1.17.2
   flutter:
     sdk: flutter
   highlight: ^0.7.0
   flutter_localizations:
     sdk: flutter
-  rich_clipboard: ^1.0.1
   intl_utils: ^2.8.7
   intl: ^0.18.1
   markdown: ^7.2.1

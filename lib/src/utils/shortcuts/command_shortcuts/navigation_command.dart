@@ -10,7 +10,7 @@ final List<CommandShortcutEvent> navigationShortcutsInCodeblock = [
   selectTillEndInCodeblock,
 ];
 
-/// ctrl + v to paste text in code block.
+/// navigating to the start of line in code block.
 ///
 /// - support
 ///   - desktop
